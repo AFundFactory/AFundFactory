@@ -1,0 +1,268 @@
+@use '@angular/material' as mat;
+@import "@angular/material/theming";
+
+@include mat.core();
+
+
+// light theme
+$light-primary-palette: mat.define-palette(mat.$gray-palette,900);
+$light-accent-palette: mat.define-palette(mat.$yellow-palette,600);
+$light-warn-palette: mat.define-palette(mat.$orange-palette,800);
+
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: $light-primary-palette,
+   accent: $light-accent-palette,
+   warn: $light-warn-palette
+ )
+));
+
+@include mat.all-component-themes($light-theme);
+
+
+// dark theme
+$dark-primary-palette: mat.define-palette(mat.$gray-palette,100);
+$dark-accent-palette: mat.define-palette(mat.$yellow-palette,600);
+$dark-warn-palette: mat.define-palette(mat.$orange-palette,800);
+
+$dark-theme: mat.define-dark-theme((
+    color: (
+      primary: $dark-primary-palette,
+      accent: $dark-accent-palette,
+      warn: $dark-warn-palette
+    ),
+));
+
+
+// Export theme colors
+$light-primary: mat-color($light-primary-palette);
+$light-accent: mat-color($light-accent-palette);
+$light-warn: mat-color($light-warn-palette);
+$dark-primary: mat-color($dark-primary-palette);
+$dark-accent: mat-color($dark-accent-palette);
+$dark-warn: mat-color($dark-warn-palette);
+
+.darkMode {
+    @include mat.all-component-colors($dark-theme);
+
+    a {
+        color: $dark-primary !important;
+    }
+    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
+    mat-card {
+        border: 3px solid $dark-accent !important;
+    }
+   
+    // dialog background
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        background-color: white !important;
+    }
+
+    // dialog text
+    .mat-mdc-dialog-container .mdc-dialog__content, .mat-mdc-dialog-container .mdc-dialog__title, .mat-mdc-dialog-container .mat-mdc-button {
+        color: black !important;
+    }
+
+    // BORDERS OF MAT-FORM-FIELD
+
+    //Top bottom border, if label is inside 
+    .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline__notch {
+        border-top: 1px solid $dark-accent !important;
+        border-bottom: 1px solid $dark-accent !important;
+    }
+
+    //Top bottom border, if label is notched
+    .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline--notched {
+        .mdc-notched-outline__notch {
+            border-top: none !important;
+            border-bottom: 1px solid $dark-accent !important;
+        }
+    }
+    //Left border with edges
+    .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline__leading {
+        border: 1px solid $dark-accent !important;
+        border-right: none !important;
+    }
+    //Right border with edges
+    .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline__trailing {
+        border: 1px solid $dark-accent !important;
+        border-left: none !important;
+    }
+
+    .lds-hourglass:after {
+        border: 32px solid black !important;
+        border-color: black transparent black transparent !important;
+    }
+
+    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    .mat-form-field-appearance-outline:not(.mat-form-field-invalid) .mat-form-field-outline {
+        color: $dark-accent !important;
+    }
+
+    .dragarea {
+        border: 1px solid $dark-accent !important;
+    }
+    
+    .droparea {
+        border: 1px dashed $dark-accent !important;
+    }
+
+    .offcanvas {
+        background-color: black !important;
+    }
+
+    .donations-list {
+        border: 3px solid $dark-accent !important;
+    }
+
+    .mat-expansion-panel:not([class*=mat-elevation-z]) {
+        box-shadow: none !important; 
+        border: 3px solid $dark-accent !important
+    }
+
+    svg.ascii-card text {
+        fill: $dark-primary         
+    }
+
+    img.img-homepage {
+        content: url("assets/FUNDdark.svg");
+    }
+
+    .homepage-card {
+        background-color: #424242 !important;
+    }
+
+}
+
+
+html, body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size:108%
+}
+
+
+// light mode background
+.mat-app-background {
+    background-color: white;
+}
+
+
+* {
+    font-family: monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: monospace !important
+}
+
+td , th {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+a {
+    color: black !important
+}
+
+mat-card {
+    border: 3px solid $light-primary !important;
+}
+
+// padding under all card headers
+.mat-mdc-card-header {
+    padding-bottom: 1rem !important;
+}
+
+// dialog background
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: black !important;
+}
+
+// dialog text
+.mat-mdc-dialog-container .mdc-dialog__content, .mat-mdc-dialog-container .mdc-dialog__title, .mat-mdc-dialog-container .mat-mdc-button {
+    color: white !important;
+}
+
+
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+// mat-form-field.zero-top-margin.mat-form-field-appearance-outline .mat-form-field-wrapper {
+//     margin-top: 0px
+// }
+
+
+// padding-bottom of the fund button (view-cf component)
+.fund-form-field .mat-mdc-form-field-subscript-wrapper {
+    height:0px;
+  }
+
+// progress bar
+.progress {
+    -webkit-box-shadow: 0 0 0 3px $dark-accent !important;
+    -moz-box-shadow: 0 0 0 3px $dark-accent !important;
+    box-shadow: 0 0 0 3px $dark-accent !important;
+}
+
+.progress-bar-striped {
+    background-image: linear-gradient(45deg,
+    $dark-accent 25%, transparent 25%, transparent 50%, 
+    $dark-accent 50%,
+    $dark-accent 75%, transparent 75%, transparent) !important
+}
+
+
+// wallet menu
+.mat-mdc-list-base {
+    padding-top: 0px !important;
+}
+
+// wallet menu
+.mat-mdc-menu-content { 
+    overflow: hidden;
+    padding: 0px !important;
+}
+
+
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
+// .mat-card-header-text {
+//     margin: 0px !important;
+// }
+
+/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
+.refinement-item .mat-list-item-content {
+    padding:0px !important
+}
+
+
+.cdk-overlay-pane {
+    min-width: fit-content;
+    margin-top: 2px;
+}
+
+// dialog
+.cdk-overlay-container {
+    z-index: 1050;
+}
+
+// // ascii
+// svg.homepage-svg text {
+//     fill: $dark-accent         
+// }
+
+
+// share-buttons {
+//     --sb-icon-size: 1.5em;
+//     --sb-color: #{$dark-warn} !important;
+//     --sb-background: rgba(255, 255, 255, 0) !important;
+//     --sb-margin: -2px;
+// }
+
+.ribbon span {
+    background: $dark-warn
+}
+
+.error {
+    color: $light-warn
+}
+

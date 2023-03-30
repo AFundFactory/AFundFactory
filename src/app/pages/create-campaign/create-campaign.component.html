@@ -1,0 +1,148 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="row m-3 justify-content-center">
+  
+      <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+      <div class="col-12 col-sm-6 col-md-7 col-lg-7 mb-3">
+  
+        <h2>
+          Campaign details
+        </h2> 
+  
+        
+        <mat-card appearance="outlined">
+          
+          <mat-card-content>
+            <div class="row">
+  
+              <div class="col">
+                <mat-form-field class="full-width zero-top-margin" appearance="outline">
+                  <mat-label>Title</mat-label>
+                  <input matInput #title_control formControlName="title" maxlength="50" required>
+                  <mat-hint align="end">{{title_control.value.length}} / 50</mat-hint>
+                  <mat-error *ngIf="form.controls['title'].hasError('pattern')">
+                    Special characters not allowed!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              
+            </div>
+      
+            <div class="row">
+      
+              <div class="col-md-8">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Category</mat-label>
+                  <mat-select formControlName="category" required>
+                    <mat-option *ngFor="let cat of availableCategories" [value]="cat">
+                      {{cat}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+      
+              <div class="col-md-4">
+                <mat-form-field class="full-width" appearance="outline" floatLabel="always">
+                  <mat-label>Goal</mat-label>
+                  <input matInput class="text-right-align" type="number" formControlName="goal" required>
+                  <span matTextSuffix>&nbsp;&#42793;</span>
+                </mat-form-field>
+              </div>
+      
+            </div>
+      
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width zero-top-margin" appearance="outline">
+                  <mat-label>URL</mat-label>
+                  <input matInput #url_control formControlName="url">
+                  <mat-error *ngIf="form.controls.url.errors?.invalidUrl">
+                    Please enter a valid URL
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+      
+      
+            <div class="row">
+              <div class="col"> 
+      
+                <div draggable="true" ngClass="{{dragAreaClass}}" class="bg-transparent">
+                  <p class="mb-0 text-center" matTooltip="For optimal formatting, upload a squared image">
+                    Drag files here
+                    <a href="javascript:void(0)" (click)="file.click()">
+                        or click to open
+                    </a>
+                  </p>
+                    
+                  <input matInput hidden>
+                  <input
+                    type="file"
+                    #file
+                    [multiple]="false"
+                    (change)="onFileChange($event)"
+                    style="display:none" />
+                </div>
+                
+                <p class="hint text-end" *ngIf="!errorFiles">Upload an image (JPEG, PNG) and get an ASCII!</p>
+                <p class="error" *ngIf="errorFiles">{{ errorFiles }}</p>
+      
+              </div>
+            </div>
+      
+                
+              
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width description" appearance="outline">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput #description_control placeholder="Description" formControlName="description" 
+                            cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="20" maxlength="1000" required></textarea>
+                  <mat-hint align="end">{{description_control.value.length}} / 1000</mat-hint>
+                  <mat-error *ngIf="form.controls['description'].hasError('pattern')">
+                    Special characters not allowed!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+      
+            <button
+              mat-flat-button 
+              color="accent" 
+              type="submit"
+              [disabled]="!form.valid"
+              [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">Create (3&#42793;*)
+              <!-- <span [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">Create (3&#42793;*)</span> -->
+            </button>
+          
+            <p class="mt-3 mb-0" style="font-size: 0.7em">* To prevent spam campaigns and to support the platform, you'll be asked to transfer 3&#42793;</p>
+            <p style="font-size: 0.7em;">By submitting, you agree with the <a [routerLink]="['../legal']">Terms and Conditions</a></p>
+              
+          </mat-card-content>
+  
+        </mat-card>
+  
+  
+      </div>
+  
+  
+      <!-- RIGHT COLUMN -->
+      <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-3">
+        <h2 class="preview-title">Preview</h2>
+        <app-campaign-card [campaign]="form.value" [create]="true"></app-campaign-card>
+      </div>  
+  
+    </div>
+  
+  </form>
+  
+  <!-- ASCII HELPER -->
+  <div class="row" style="display: none;">
+    <img [src]="img" (load)="onImageLoad($event)">
+    <canvas #myCanvas></canvas>
+    <pre>{{asciiText}}</pre>
+  </div>
+  
+  
+  

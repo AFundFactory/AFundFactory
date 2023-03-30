@@ -1,0 +1,161 @@
+<div class="row m-3 justify-content-center">
+  <div class="col col-sm-8 col-md-8 col-lg-8 col-xl-6">
+
+    <!-- CROWDFUNDING CAMPAIGNS -->
+    <h4>Crowdfunding campaigns</h4>
+
+    <mat-card appearance="outlined" class="mb-3">
+
+      <mat-card-content>
+        <p>Anyone with a Tezos wallet can create or support a crowdfunding campaign easily. No account, just a wallet. 
+          When a campaign is created, a new smart contract is deployed. This smart contract is yours and the platform has 
+          no control over it, which means only you can make decisions about your campaign - <b>a truly decentralized
+          crowdfunding campaign without intermediaries.</b>
+        </p>
+    
+        <p>Funds are immediately transferred from the supporter wallet to the campaign owner wallet and there is no commission per transaction.
+          As a campaign owner, you only need to transfer 3&#42793; upon campaign creation - this is to prevent spam campaigns and to support
+          the platform costs.
+        </p>
+      </mat-card-content>
+      
+    </mat-card>
+
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="fw-bold">
+            Create a crowdfunding campaign
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>You can create a crowdfunding campaign <a routerLink="../create">here</a>. 
+          This will deploy a new contract for your campaign, where all the needed info will be stored. You'll need to connect
+        your wallet, which will be associated with your campaign - make sure you have access to this wallet.</p>
+
+        <p>You'll need to define:</p>
+        <div class="ms-2 mb-4">
+
+          <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="ps-3"> {{element.description}} </td>
+            </ng-container>
+            
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+              
+        </div>
+
+        <p>To prevent spam campaigns and to support costs with the platform, you'll be asked to transfer 3&#42793;.</p>
+        
+        <p>Now that your campaign is live, share it with your friends, family and in social media!</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            Fund a campaign
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>To fund a campaign, simply go to the page of the campaign you want to support and define how much you want to donate.
+          The owner of the campaign will receive your funds immediately, when the transaction is complete.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            Collect funds
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>There's no need to collect funds because all funds are immediately transferred to the campaign owner.</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            Closing a campaign
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Your campaign will be active and receiving funds unless you close it. You can close your 
+          campaign anytime, even if you don't reach your goal.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- FAQ -->
+    <h4>FAQ</h4>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            I lost access to my wallet, what can I do?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Everytime a user funds your campaign, the funds will be immediately transfered to the wallet that created the campaign.
+          If you lost access to your wallet, you won't be able to access those funds and there is no way of closing the campaign
+          to prevent users from funding it further. Please make sure you have your wallet secured.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            I lost access to my wallet, what can I do?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Everytime a user funds your campaign, the funds will be immediately transfered to the wallet that created the campaign.
+          If you lost access to your wallet, you won't be able to access those funds and there is no way of closing the campaign
+          to prevent users from funding it further. Please make sure you have your wallet secured.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion> -->
+
+
+    <!-- EXTERNAL TOOLS -->
+    <h4>External tools</h4>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            Profiles
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Profiles are fetched from the Tezos Profiles API. Learn more on their <a href="https://tzprofiles.com">website</a>.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="fw-bold">
+            Contract information
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Some information is retrieved with the TzKT API. Learn more on their <a href="https://tzkt.io/">website</a>.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+</div>
+  

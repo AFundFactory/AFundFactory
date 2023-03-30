@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+  }
+
+div.donations-list {
+  border: 3px solid; 
+  border-radius: 4px
+}
+
+
+.text-right-align {
+  text-align: right;
+}
+
+input.text-right-align::-webkit-outer-spin-button,
+input.text-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+.full-width {
+  width: 100%;
+}
+
