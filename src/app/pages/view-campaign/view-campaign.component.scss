@@ -4,7 +4,8 @@ table {
 
 div.donations-list {
   border: 3px solid; 
-  border-radius: 4px
+  border-radius: 4px;
+  padding: 0px;
 }
 
 
@@ -20,4 +21,8 @@ input.text-right-align::-webkit-inner-spin-button {
 .full-width {
   width: 100%;
 }
+
+// mat-card {
+//   margin-top:16px
+// }
 

@@ -37,6 +37,7 @@ export class IndexerService {
     const url = `${this.indexerURL}/getCampaignByAddress?contract=${contractAddress}`
     return this.http.get(url).pipe(map((res: RestResponse) => {
       console.log(res)
+      if (res.campaignList.length == 0) return null
       if (res.campaignList.length > 0) {
         res.campaignList[0].ascii_array = res.campaignList[0].ascii.split('\n').slice(0, -1)
         return res.campaignList[0]

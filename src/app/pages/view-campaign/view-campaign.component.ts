@@ -30,7 +30,7 @@ export class ViewCampaignComponent implements AfterViewInit, OnInit {
   public contractAddress: string
   public supportUsContract = environment.supportUsContract
   public url: string
-  public campaignExists: boolean
+  public campaignExists: boolean = undefined
   public campaign: Campaign = new Campaign()
 
   private ownAddress: string | undefined
@@ -64,8 +64,10 @@ export class ViewCampaignComponent implements AfterViewInit, OnInit {
 
     (await this.indexer.getCampaign(this.contractAddress)).subscribe(async data => {
       
+      console.log(data)
+      console.log(this.campaignExists)
       if (!data) {this.campaignExists = false; return}
-
+      
       this.campaignExists = true
       this.campaign = data
 
