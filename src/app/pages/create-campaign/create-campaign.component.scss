@@ -27,16 +27,6 @@ input.text-right-align::-webkit-inner-spin-button {
   border-radius: 0.375rem;
 }
 
-// FOR ASCII
-/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-// .mat-form-field-underline{
-//   visibility: hidden;
-// }
-
-// .droparea .mat-form-field-appearance-outline:not(.mat-form-field-invalid) .mat-form-field-outline {
-//   color: transparent !important;
-// }
-
 .hint {
   color:rgba(255, 255, 255, 0.7);
   font-size:75%
@@ -49,10 +39,4 @@ mat-error {
 mat-hint {
   font-size:75%;
   color: rgba(255, 255, 255, 0.7);
-}
-
-.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
-  padding: 0 0px !important;
-  // padding-right: 0px !important;
-  // padding-bottom: 3px !important;
 }

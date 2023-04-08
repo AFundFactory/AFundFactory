@@ -1,30 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { TaquitoService } from '../../services/taquito.service'
 import { TzktService } from '../../services/tzkt.service';
 import { TzprofilesService } from '../../services/tzprofiles.service';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { first } from 'rxjs/operators'
+import { Campaign } from 'src/app/models/campaign.model';
 
-// function urlValidator(): ValidatorFn {
-//   return (control:AbstractControl) : ValidationErrors | null => {
-//     if (!control.value) return null
-//     let validUrl = true;
-//     try {
-//       let str = control.value;
-//       if (str.indexOf('://') === -1) str = `https://${str}`
-//       new URL(str);
-//     } catch {
-//       validUrl = false;
-//     }
-//     return validUrl ? null : { invalidUrl: true };
-//   }
-// }
+export function validUrl(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
 
-export class CustomValidators {
-  static validUrl: ValidatorFn = (control: FormControl): ValidationErrors | null  => {
     if (!control.value) return null
     try {
       let str = control.value;
@@ -37,7 +24,7 @@ export class CustomValidators {
     } catch (_) {
       return { invalidUrl: true };
     }
-  }
+  };
 }
 
 
@@ -51,7 +38,7 @@ export class CreateCampaignComponent {
   form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.pattern('[\x20-\x7e]*'), Validators.maxLength(50)]),
     description: new FormControl('', [Validators.required, Validators.pattern('[\x20-\x7e\n]*'), Validators.maxLength(1000)]),
-    url: new FormControl('', [CustomValidators.validUrl]),
+    url: new FormControl('', validUrl()),
     goal: new FormControl<number|null>(null, Validators.required),
     ascii_array: new FormControl<string[]>([], Validators.required),
     category: new FormControl('', Validators.required),
@@ -60,11 +47,16 @@ export class CreateCampaignComponent {
       name: new FormControl('')
     }),
     donated: new FormControl(0),
-    creationDate: new FormControl(new Date(Date.now()))
+    creationDate: new FormControl(new Date(Date.now()).toString()),
+    ascii: new FormControl(''),
+    closed: new FormControl(false),
+    contract: new FormControl(''),
+    version: new FormControl('')
   });
 
+  formValue: Campaign = new Campaign()
   availableCategories: string[] = [];
-  ownAddress!: string | null
+  ownAddress: string | undefined = undefined
 
   // DRAG AND DRP
   errorFiles!: string;
@@ -73,8 +65,8 @@ export class CreateCampaignComponent {
   // ASCII
   @ViewChild('myCanvas', { static: false })
   myCanvas!: ElementRef<HTMLCanvasElement>;
-  context!: CanvasRenderingContext2D;
-  img!: string | ArrayBuffer;
+  context!: CanvasRenderingContext2D | null;
+  img!: string | ArrayBuffer | null | undefined;
   asciiText!: string;
 
   constructor(
@@ -82,13 +74,16 @@ export class CreateCampaignComponent {
     public router: Router,
     public dialog: MatDialog,
     private tzkt: TzktService,
-    private tzprofile: TzprofilesService
+    private tzprofile: TzprofilesService,
+    private fb: FormBuilder
   ) {}
 
   async ngOnInit() {
     this.taquito.accountInfo$.pipe(first()).subscribe(async (accountInfo) => {
       this.ownAddress = accountInfo?.address
-      this.form.controls.owner.controls.address.setValue(this.ownAddress)
+      if (this.ownAddress) {
+        this.form.controls.owner.controls.address.setValue(this.ownAddress)
+      }
       console.log(this.ownAddress)
 
       if (accountInfo && this.ownAddress) {
@@ -104,6 +99,10 @@ export class CreateCampaignComponent {
     (await this.tzkt.getCrowdfundingCategories()).subscribe(categories => this.availableCategories = categories);
 
     this.dragAreaClass = "dragarea";
+
+    this.form.valueChanges.subscribe(_ => {
+      this.formValue = this.form.value as Campaign;
+    });
     
   }
 
@@ -126,13 +125,13 @@ export class CreateCampaignComponent {
       const category = this.form.value.category ? this.form.value.category : ''
 
       let url = this.form.value.url;
-      if (url.indexOf('://') === -1) {
+      if (url && url.indexOf('://') === -1) {
         url = `https://${url}`;
       }
       const finalUrl = url ? new URL(url).href : ''
 
       await this.taquito.createCampaign(ascii, category, description, goal, title, finalUrl).then(data => {
-        data.subscribe(async originatedAddress => {
+        data.subscribe(async (originatedAddress: string | object) => {
           // success
           if (typeof originatedAddress == 'string') {
             this.closeDialog(loadingDialog)
@@ -148,27 +147,6 @@ export class CreateCampaignComponent {
     })
 
   }
-
-
-  // urlValidator(control) {
-  //   if (!control.value) return
-
-  //   let validUrl = true;
-
-  //   try {
-  //     let str = control.value;
-  //     if (str.indexOf('://') === -1) {
-  //       str = `https://${str}`;
-  //     }
-  //     new URL(str);
-  //     console.log(new URL(str))
-  //     // new URL(control.value)
-  //   } catch {
-  //     validUrl = false;
-  //   }
-
-  //   return validUrl ? null : { invalidUrl: true };
-  // }
  
 
   openDialog(error: boolean, success: boolean, message: string, disableClose: boolean) {
@@ -199,12 +177,12 @@ export class CreateCampaignComponent {
     
     console.log(file)
     const reader = new FileReader()
-    reader.onload = (event) => this.img = event.target.result
+    reader.onload = (event) => this.img = event.target?.result
     reader.readAsDataURL(file)
     
   }
 
-  onImageLoad(event) {
+  onImageLoad(event: Event) {
 
     this.context = this.myCanvas.nativeElement.getContext('2d');
 
@@ -214,10 +192,11 @@ export class CreateCampaignComponent {
     this.myCanvas.nativeElement.width = width;
     this.myCanvas.nativeElement.height = height;
     
-    this.context.drawImage(event.target, 0, 0, width, height);
-    const grayScales = this.convertToGrayScales(this.context, width, height);
-
-    this.drawAscii(grayScales, width);   
+    this.context?.drawImage(event.target as HTMLImageElement, 0, 0, width, height);
+    if (this.context) {
+      const grayScales = this.convertToGrayScales(this.context, width, height);
+      this.drawAscii(grayScales, width);  
+    } 
 
   }
 
@@ -282,8 +261,7 @@ export class CreateCampaignComponent {
   joinMissingFieldString() {
 
     if (this.form.valid) return ''
-
-    if (!this.form.valid) {
+    else {
 
       const strings = [
         this.form.controls.title.errors?.['required'] ? 'title' : null,

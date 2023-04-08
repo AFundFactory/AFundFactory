@@ -48,7 +48,7 @@ $dark-warn: mat-color($dark-warn-palette);
     a {
         color: $dark-primary !important;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
+    
     mat-card {
         border: 3px solid $dark-accent !important;
     }
@@ -94,11 +94,6 @@ $dark-warn: mat-color($dark-warn-palette);
         border-color: black transparent black transparent !important;
     }
 
-    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-    .mat-form-field-appearance-outline:not(.mat-form-field-invalid) .mat-form-field-outline {
-        color: $dark-accent !important;
-    }
-
     .dragarea {
         border: 1px solid $dark-accent !important;
     }
@@ -109,10 +104,6 @@ $dark-warn: mat-color($dark-warn-palette);
 
     .offcanvas {
         background-color: black !important;
-    }
-
-    .donations-list {
-        border: 3px solid $dark-accent !important;
     }
 
     .mat-expansion-panel:not([class*=mat-elevation-z]) {
@@ -130,6 +121,11 @@ $dark-warn: mat-color($dark-warn-palette);
 
     .homepage-card {
         background-color: #424242 !important;
+    }
+
+    // tezos symbol
+    img.tezos-symbol {
+        content: url("assets/tezos-xtz-logo_white.svg");
     }
 
 }
@@ -185,17 +181,15 @@ mat-card {
     color: white !important;
 }
 
-
-/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
-// mat-form-field.zero-top-margin.mat-form-field-appearance-outline .mat-form-field-wrapper {
-//     margin-top: 0px
-// }
-
-
-// padding-bottom of the fund button (view-cf component)
+// padding-bottom of the fund button (view-campaign component)
 .fund-form-field .mat-mdc-form-field-subscript-wrapper {
     height:0px;
-  }
+}
+
+// height of form field same as pagination field
+.fund-form-field .mat-mdc-text-field-wrapper {
+    height:40px;
+}
 
 // progress bar
 .progress {
@@ -223,18 +217,7 @@ mat-card {
     padding: 0px !important;
 }
 
-
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
-// .mat-card-header-text {
-//     margin: 0px !important;
-// }
-
-/* TODO(mdc-migration): The following rule targets internal classes of list that may no longer apply for the MDC version.*/
-.refinement-item .mat-list-item-content {
-    padding:0px !important
-}
-
-
+// wallet menu
 .cdk-overlay-pane {
     min-width: fit-content;
     margin-top: 2px;
@@ -245,24 +228,31 @@ mat-card {
     z-index: 1050;
 }
 
-// // ascii
-// svg.homepage-svg text {
-//     fill: $dark-accent         
-// }
-
-
-// share-buttons {
-//     --sb-icon-size: 1.5em;
-//     --sb-color: #{$dark-warn} !important;
-//     --sb-background: rgba(255, 255, 255, 0) !important;
-//     --sb-margin: -2px;
-// }
-
+// ribbon
 .ribbon span {
-    background: $dark-warn
+    background: $dark-accent;
+    color:black;
 }
 
+// error message on create form
 .error {
-    color: $light-warn
+    color: $light-warn;
 }
 
+// hint and error padding
+.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+    padding: 0px !important;
+}
+
+
+// tezos symbol
+img.tezos-symbol {
+    content: url("assets/tezos-xtz-logo_black.svg");
+    height:1rem
+}
+
+// tezos symbol banner (always black)
+img.tezos-symbol-banner {
+    content: url("assets/tezos-xtz-logo_black.svg");
+    height:1rem
+}

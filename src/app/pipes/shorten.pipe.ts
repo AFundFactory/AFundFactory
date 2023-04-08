@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core'
 export class ShortenPipe implements PipeTransform {
   public transform(value: string, args: { ifMatches?: string | RegExp } = {}) {
     if (!value || !(typeof value === 'string')) {
-      // console.warn(`ShortenStringPipe: invalid value: ${value}`)
       return ''
     }
 

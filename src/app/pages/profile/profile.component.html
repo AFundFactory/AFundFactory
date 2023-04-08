@@ -1,4 +1,4 @@
-<div class="row m-3">
+<div class="row m-5">
 
     <div class="row mb-3 justify-content-center">
         <div class="col-10">
@@ -73,7 +73,7 @@
             <h2 *ngIf="ownedCampaigns.length > 0">Owned campaigns</h2>
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
                 <div class="col pt-0 pb-4" *ngFor="let campaign of ownedCampaigns">
-                        <app-campaign-card [campaign]="campaign" profile="true"></app-campaign-card>
+                        <app-campaign-card [campaign]="campaign" [profile]="true"></app-campaign-card>
                 </div>
             </div>
             <h2 *ngIf="ownedCampaigns.length == 0">No owned campaigns</h2>
@@ -81,7 +81,7 @@
             <h2 *ngIf="fundedCampaigns.length > 0">Funded campaigns</h2>
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
                 <div class="col pt-0 pb-4" *ngFor="let campaign of fundedCampaigns">
-                        <app-campaign-card [campaign]="campaign" profile="true"></app-campaign-card>
+                        <app-campaign-card [campaign]="campaign" [profile]="true"></app-campaign-card>
                 </div>
             </div>
             <h2 *ngIf="fundedCampaigns.length == 0">No funded campaigns</h2>

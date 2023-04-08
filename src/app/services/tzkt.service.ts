@@ -24,14 +24,14 @@ export class TzktService {
 
   async getContractStorageFieldAPI(address: string, fieldName: string) {
     const url = `${this.tzktUrlAPI}/contracts/${address}/storage/?path=${fieldName}`
-    return this.http.get<Object>(url)
+    return this.http.get<string[]>(url)
   }
 
 
   async getOriginatedContractAddressFromHash(opHash: string) {
     console.log(opHash)
     return (await this.getOriginationByHash(opHash)).pipe(
-      map(data => {
+      map((data: any) => {
         console.log(data)
         return data[0]['originatedContract']['address']
       })

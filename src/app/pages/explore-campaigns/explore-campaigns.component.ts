@@ -9,8 +9,8 @@ import { Campaign } from '../../models/campaign.model';
 })
 export class ExploreCampaignsComponent implements OnInit {
 
-  allCampaigns: Campaign[]
-  campaignList: Campaign[]
+  allCampaigns: Campaign[] = []
+  campaignList: Campaign[] = []
   searchValue: string = ''
   availableCategories: {value: string, isRefined: boolean}[] = []
 
@@ -20,6 +20,7 @@ export class ExploreCampaignsComponent implements OnInit {
   async ngOnInit() {
 
     (await this.indexer.getAllCampaigns()).subscribe(res => {
+      console.log(res)
       this.allCampaigns = res
       this.campaignList = res
     });
@@ -34,7 +35,7 @@ export class ExploreCampaignsComponent implements OnInit {
     this.searchValue = searchValue
 
     const selectedCat = this.availableCategories.filter(cat => cat.isRefined == true)
-    const catList = []
+    const catList: string[] = []
     selectedCat.forEach(cat => catList.push(cat.value))
 
     if (catList.length == 0 && searchValue == '') {

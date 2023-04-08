@@ -16,6 +16,14 @@ export class Campaign {
   donated: number = 0;
   version: string = '';
   creationDate: string = '';
-  funding?: Funding[];
-  ascii_array?: string[];
+  // funding?: Funding[];
+  ascii_array: string[] = [];
+
+  public constructor(init?: Partial<Campaign>) {
+    Object.assign(this, init);
+  }
 }
+
+export class RestResponse {
+  campaignList: Campaign[] = []
+} 

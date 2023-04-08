@@ -1,22 +1,3 @@
-
-/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
-// mat-card {
-//   border: 3px solid black;
-//   display:flex;
-//   flex-direction: column;
-// }
-
-// /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
-// mat-card-header {
-//   flex-shrink: 0;
-// }
-
-// /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version.*/
-// mat-card-content{
-//   flex-grow: 1;
-//   overflow: auto;
-// }
-
 .campaign-card {
   min-width:250px !important;
   max-width:375px !important;

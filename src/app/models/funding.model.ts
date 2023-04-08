@@ -1,8 +1,8 @@
 export class Funding {
-    fundingAddress: {
+    fundingAddress!: {
         address: string;
         name: string;
     };
-    date: Date;
-    amount: number;
+    date!: Date;
+    amount!: number;
 }

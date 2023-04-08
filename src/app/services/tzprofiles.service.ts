@@ -32,12 +32,12 @@ export class TzprofilesService {
 
     let profile = new Profile(address)
 
-    return this.http.get<Object[]>(url).pipe(
+    return this.http.get<string[][]>(url).pipe(
       map(res => {
       
-        res.forEach((x: string[]) => {
+        res.forEach((x) => {
           const obj = JSON.parse(x[1])
-
+          console.log(obj)
           const context = obj['@context'][1]
           const credentialSubject = obj['credentialSubject']
 

@@ -1,7 +1,7 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="row m-3 justify-content-center">
+    <div class="row m-5 justify-content-center">
   
       <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
       <div class="col-12 col-sm-6 col-md-7 col-lg-7 mb-3">
@@ -17,7 +17,7 @@
             <div class="row">
   
               <div class="col">
-                <mat-form-field class="full-width zero-top-margin" appearance="outline">
+                <mat-form-field class="full-width" appearance="outline">
                   <mat-label>Title</mat-label>
                   <input matInput #title_control formControlName="title" maxlength="50" required>
                   <mat-hint align="end">{{title_control.value.length}} / 50</mat-hint>
@@ -46,7 +46,7 @@
                 <mat-form-field class="full-width" appearance="outline" floatLabel="always">
                   <mat-label>Goal</mat-label>
                   <input matInput class="text-right-align" type="number" formControlName="goal" required>
-                  <span matTextSuffix>&nbsp;&#42793;</span>
+                  <span matTextSuffix><img class="tezos-symbol"></span>
                 </mat-form-field>
               </div>
       
@@ -54,10 +54,10 @@
       
             <div class="row">
               <div class="col">
-                <mat-form-field class="full-width zero-top-margin" appearance="outline">
+                <mat-form-field class="full-width" appearance="outline">
                   <mat-label>URL</mat-label>
                   <input matInput #url_control formControlName="url">
-                  <mat-error *ngIf="form.controls.url.errors?.invalidUrl">
+                  <mat-error *ngIf="form.controls.url.errors?.['invalidUrl']">
                     Please enter a valid URL
                   </mat-error>
                 </mat-form-field>
@@ -112,11 +112,11 @@
               color="accent" 
               type="submit"
               [disabled]="!form.valid"
-              [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">Create (3&#42793;*)
-              <!-- <span [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">Create (3&#42793;*)</span> -->
+              [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">
+              <span [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">Create (3&#42793;*)</span>
             </button>
           
-            <p class="mt-3 mb-0" style="font-size: 0.7em">* To prevent spam campaigns and to support the platform, you'll be asked to transfer 3&#42793;</p>
+            <p class="mt-3 mb-0" style="font-size: 0.7em">* To prevent spam campaigns and to support the platform, you'll be asked to transfer 3<img class="tezos-symbol" style="height:0.7rem"></p>
             <p style="font-size: 0.7em;">By submitting, you agree with the <a [routerLink]="['../legal']">Terms and Conditions</a></p>
               
           </mat-card-content>
@@ -130,7 +130,7 @@
       <!-- RIGHT COLUMN -->
       <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-3">
         <h2 class="preview-title">Preview</h2>
-        <app-campaign-card [campaign]="form.value" [create]="true"></app-campaign-card>
+        <app-campaign-card [campaign]="formValue" [create]="true"></app-campaign-card>
       </div>  
   
     </div>
