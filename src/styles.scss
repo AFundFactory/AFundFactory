@@ -115,10 +115,6 @@ $dark-warn: mat-color($dark-warn-palette);
         fill: $dark-primary         
     }
 
-    img.img-homepage {
-        content: url("assets/FUNDdark.svg");
-    }
-
     .homepage-card {
         background-color: #424242 !important;
     }
@@ -126,6 +122,10 @@ $dark-warn: mat-color($dark-warn-palette);
     // tezos symbol
     img.tezos-symbol {
         content: url("assets/tezos-xtz-logo_white.svg");
+    }
+
+    .div-img-homepage {
+        background-image: url("assets/FUNDdark.svg") !important;
     }
 
 }
