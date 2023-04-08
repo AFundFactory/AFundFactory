@@ -1,8 +1,8 @@
-<mat-card appearance="outlined" class="homepage-card mb-5" style="border:0px !important; box-shadow: none; border-radius: 0px; background-color: whitesmoke">
+<mat-card appearance="outlined" class="homepage-card" style="border:0px !important; box-shadow: none; border-radius: 0px; background-color: whitesmoke">
 
-    <div class="row justify-content-center me-0">        
+    <div class="row justify-content-center me-5">        
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8" #leftColumn>
             <!-- <mat-card-title>Crowdfunding factory</mat-card-title> -->
             <!-- <mat-card-title class="landing-title">A factory to deploy your decentralized and censorship-resistant crowdfunding smart contracts
                 built on the Tezos blockchain</mat-card-title> -->
@@ -22,15 +22,16 @@
         </div>
 
         <div class="col-12 col-sm-8 col-md-4 my-5 align-items-center div-img-homepage">
-            <img class="img-homepage" src="../../assets/FUNDlight.svg" style="width:75%">
+            <!-- <img class="img-homepage fill-height" src="../../assets/FUNDlight.svg" style="width:75%;"> -->
             <!-- <h1>AFundFactory</h1> -->
         </div>
 
     </div>
 </mat-card>
 
-<div class="row justify-content-center me-0">
+<div class="row justify-content-center me-0 pt-5" id="ascii-banner" style="background-color: transparent !important; z-index:1; position:relative; color:black !important">
     <mat-card appearance="outlined" class="col-12 col-sm-6 col-lg-4 col-xl-3 homepage-small-card d-flex flex-column align-items-center bg-transparent mx-auto mb-5">
+        
         <mat-card-content style="transform: scale(2);">
             <mat-icon>public</mat-icon>
         </mat-card-content>
@@ -49,7 +50,7 @@
         
         <mat-card-header>
             <mat-card-title class="mt-3 text-center fs-4">No commissions</mat-card-title>
-            <mat-card-subtitle class="mt-2 text-center fs-6">Pay only a small flat fee of 3&#42793;</mat-card-subtitle>
+            <mat-card-subtitle class="mt-2 text-center fs-6">Pay only a small flat fee of 3<img class="tezos-symbol-banner"></mat-card-subtitle>
         </mat-card-header>
         
     </mat-card>
@@ -75,8 +76,8 @@
     <mat-card appearance="outlined" class="col-12 col-sm-6 col-lg-4 col-xl-3 homepage-small-card d-flex flex-column align-items-center bg-transparent mx-auto mb-5">
         <mat-card-header>
             <mat-card-title class="mt-3 text-center fs-4">Step 1</mat-card-title>
-            <mat-card-subtitle class="mt-2 text-center fs-6">Create a campaign! You'll need to provide a title and a description, 
-                upload an image to make an ASCII, set a goal and a category.
+            <mat-card-subtitle class="mt-2 text-center fs-6">Create a campaign!
+                You'll need to provide a brief description and upload an image to make an ASCII.
             </mat-card-subtitle>
         </mat-card-header>
     </mat-card>
@@ -84,8 +85,8 @@
     <mat-card appearance="outlined" class="col-12 col-sm-6 col-lg-4 col-xl-3 homepage-small-card d-flex flex-column align-items-center bg-transparent mx-auto mb-5">
         <mat-card-header>
             <mat-card-title class="mt-3 text-center fs-4">Step 2</mat-card-title>
-            <mat-card-subtitle class="mt-2 text-center fs-6">Deploy it through our factory and make it live on the Tezos Blockchain! Don't worry, 
-                AFundFactory has no control over your campaign.
+            <mat-card-subtitle class="mt-2 text-center fs-6">Deploy it through our factory on the Tezos Blockchain! Don't worry, 
+                only you can control it.
             </mat-card-subtitle>
         </mat-card-header>
     </mat-card>
@@ -93,7 +94,7 @@
     <mat-card appearance="outlined" class="col-12 col-sm-6 col-lg-4 col-xl-3 homepage-small-card d-flex flex-column align-items-center bg-transparent mx-auto mb-5">
         <mat-card-header>
             <mat-card-title class="mt-3 text-center fs-4">Step 3</mat-card-title>
-            <mat-card-subtitle class="mt-2 text-center fs-6">Receive funds and make your dreams come true!</mat-card-subtitle>
+            <mat-card-subtitle class="mt-2 text-center fs-6">Share your campaign with <br> the world, receive funds <br> and make your dreams <br> come true!</mat-card-subtitle>
         </mat-card-header>
     </mat-card>    
 

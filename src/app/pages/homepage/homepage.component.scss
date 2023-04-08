@@ -1,0 +1,44 @@
+.landing-title {
+    margin: 0 0 30px;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 38px;
+}
+
+.landing-subtitle {
+    margin: 0 0 40px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+}
+
+.div-img-homepage {
+    // display: flex;
+    // justify-content: space-around;
+    // align-self: start;
+
+    position: static;
+    background-image: url("../../../assets/FUNDlight.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    object-fit: cover;
+    min-height:200px;
+}
+
+.homepage-small-card {
+    border:0px !important; 
+    box-shadow: none; 
+    width:275px
+}
+
+#ascii-banner {
+    background-color: transparent !important; 
+    z-index:1; 
+    position:relative; 
+    color:black !important;
+}
+
+#ascii-banner .mat-mdc-card-subtitle {
+    color:black
+}
