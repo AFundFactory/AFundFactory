@@ -67,10 +67,10 @@
               </mat-nav-list>
 
               <mat-nav-list class="navbar-nav footer-menu fixed-bottom mb-3 ml-auto" style="visibility: hidden; position: absolute">
-                <a routerLink="legal"><button mat-button data-bs-dismiss="offcanvas">Legal</button></a>
-                <a routerLink="."><button mat-button data-bs-dismiss="offcanvas">Twitter</button></a>
-                <a routerLink="."><button mat-button data-bs-dismiss="offcanvas">Github</button></a>
-                <a [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent" data-bs-dismiss="offcanvas">Support us</button></a>
+                <a class="text-decoration-none" routerLink="legal"><button mat-button data-bs-dismiss="offcanvas">Legal</button></a>
+                <a class="text-decoration-none" routerLink="."><button mat-button data-bs-dismiss="offcanvas">Twitter</button></a>
+                <a class="text-decoration-none" routerLink="."><button mat-button data-bs-dismiss="offcanvas">Github</button></a>
+                <a class="text-decoration-none" [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent" data-bs-dismiss="offcanvas">Support us</button></a>
               </mat-nav-list>
     
             </div>

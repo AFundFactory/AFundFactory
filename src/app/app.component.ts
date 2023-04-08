@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, HostBinding } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, HostBinding, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs'
@@ -29,13 +29,13 @@ interface ScrollPositionRestore {
 export class AppComponent implements OnInit {
 
   @HostBinding('class') className = '';
-  @ViewChild('content') private content: ElementRef<HTMLElement>;
+  @ViewChild('content') private content!: ElementRef<HTMLElement>;
 
   appName = environment.appName
   supportUsContract = environment.supportUsContract
   profile: Profile = new Profile('')
-  connectedWallet$: Observable<AccountInfo | undefined> | undefined
-  ownAddress: string
+  connectedWallet$: Observable<AccountInfo | undefined>
+  ownAddress: string | undefined
   toggleDark = new FormControl(false);
 
   constructor(
@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
       this.className = 'darkMode';
       this.overlay.getContainerElement().classList.add('darkMode');
     }
+
   }
  
   ngOnInit() {
@@ -62,13 +63,11 @@ export class AppComponent implements OnInit {
 
     this.connectedWallet$.subscribe(async accountInfo => {
       this.ownAddress = accountInfo?.address
-      if (accountInfo) {
+      if (this.ownAddress) {
         (await this.tzprofile.getWalletProfile(this.ownAddress, false)).subscribe(profile => {
           this.profile = profile
           console.log(profile)
         })
-      // } else {
-      //   this.profile = new Profile
       }
     })
 
@@ -81,26 +80,20 @@ export class AppComponent implements OnInit {
         this.overlay.getContainerElement().classList.remove(darkClassName);
 
         const navbarImg = document.getElementById('navbar-brand-img')
-        navbarImg.setAttribute('src', '../assets/FUNDlight.svg')
+        navbarImg?.setAttribute('src', '../assets/FUNDlight.svg')
 
         const navbarImgOffcanvas = document.getElementById('navbar-brand-img-offcanvas')
-        navbarImgOffcanvas.setAttribute('src', '../assets/FUNDlight.svg')
+        navbarImgOffcanvas?.setAttribute('src', '../assets/FUNDlight.svg')
       } else {
         this.overlay.getContainerElement().classList.add(darkClassName);
 
         const navbarImg = document.getElementById('navbar-brand-img')
-        navbarImg.setAttribute('src', '../assets/FUNDdark.svg')
+        navbarImg?.setAttribute('src', '../assets/FUNDdark.svg')
 
         const navbarImgOffcanvas = document.getElementById('navbar-brand-img-offcanvas')
-        navbarImgOffcanvas.setAttribute('src', '../assets/FUNDdark.svg')
+        navbarImgOffcanvas?.setAttribute('src', '../assets/FUNDdark.svg')
       }
       
-
-      // if (!darkMode) {
-      //   this.overlay.getContainerElement().classList.add(darkClassName);
-      // } else {
-      //   this.overlay.getContainerElement().classList.remove(darkClassName);
-      // }
     });
 
 
@@ -120,56 +113,56 @@ export class AppComponent implements OnInit {
       this.seoService.updateMetaTags(seoData['metaTags']);
     });
 
+    
+   
+    // SCROLL
+    this.router.events.pipe(
+      filter(
+        event =>
+          event instanceof NavigationStart || event instanceof NavigationEnd,
+      ),
+      scan<any>((acc, event) => ({
+            event,
+            positions: {
+              ...acc.positions,
+              ...(event instanceof NavigationStart
+                ? {
+                    [event.id]: this.content.nativeElement.scrollTop,
+                  }
+                : {}),
+            },
+            trigger:
+              event instanceof NavigationStart && event.navigationTrigger
+                ? event.navigationTrigger 
+                : acc.trigger,
+            idToRestore:
+              (event instanceof NavigationStart &&
+                event.restoredState &&
+                event.restoredState.navigationId + 1) ||
+              acc.idToRestore, 
+          })
+      ),
+      filter(
+        ({ event, trigger }: ScrollPositionRestore) => event instanceof NavigationEnd && !!trigger,
+      ),
+      observeOn(asyncScheduler),
+    ).subscribe(({ trigger, positions, idToRestore }) => {
+      // console.log(trigger)
+      // console.log(positions)
+      // console.log(idToRestore)
+      if (trigger === 'imperative') {
+        this.content.nativeElement.scrollTop = 0;
+      }
 
-    // // SCROLL
-    // this.router.events
-    //   .pipe(
-    //     filter(
-    //       event =>
-    //         event instanceof NavigationStart || event instanceof NavigationEnd,
-    //     ),
-    //     scan<Event, ScrollPositionRestore>((acc, event) => ({
-    //       event,
-    //       positions: {
-    //         ...acc.positions,
-    //         ...(event instanceof NavigationStart
-    //           ? {
-    //               [event.id]: this.content.nativeElement.scrollTop,
-    //             }
-    //           : {}),
-    //       },
-    //       trigger:
-    //         event instanceof NavigationStart
-    //           ? event.navigationTrigger
-    //           : acc.trigger,
-    //       idToRestore:
-    //         (event instanceof NavigationStart &&
-    //           event.restoredState &&
-    //           event.restoredState.navigationId + 1) ||
-    //         acc.idToRestore,
-    //     })),
-    //     filter(
-    //       ({ event, trigger }) => event instanceof NavigationEnd && !!trigger,
-    //     ),
-    //     observeOn(asyncScheduler),
-    //   )
-    //   .subscribe(({ trigger, positions, idToRestore }) => {
-    //     console.log(trigger)
-    //     console.log(positions)
-    //     console.log(idToRestore)
-    //     if (trigger === 'imperative') {
-    //       this.content.nativeElement.scrollTop = 0;
-    //     }
-
-    //     if (trigger === 'popstate') {
-    //       this.content.nativeElement.scrollTop = positions[idToRestore];
-    //     }
-    //   });
-
+      if (trigger === 'popstate') {
+        this.content.nativeElement.scrollTop = positions[idToRestore];
+      }
+    });
 
   }
 
-  connectWallet() {
+
+  connectWallet() { 
     console.log('connect')
     this.store$.dispatch(actions.connectWallet())
   }
@@ -182,8 +175,8 @@ export class AppComponent implements OnInit {
 
   toggleMenu() {
     const myOffcanvas = document.getElementById('offcanvasNavbar')
-    myOffcanvas.classList.remove('show')
-    myOffcanvas.classList.add('toggle')
+    myOffcanvas?.classList.remove('show')
+    myOffcanvas?.classList.add('toggle')
   }
 
   toggleDarkButton() {
