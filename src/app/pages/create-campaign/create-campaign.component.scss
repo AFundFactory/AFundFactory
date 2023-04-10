@@ -29,14 +29,14 @@ input.text-right-align::-webkit-inner-spin-button {
 
 .hint {
   color:rgba(255, 255, 255, 0.7);
-  font-size:75%
+  font-size:0.7rem
 }
 
-mat-error {
-  font-size:75%;
-}
+// mat-error {
+//   font-size:75%;
+// }
 
 mat-hint {
-  font-size:75%;
   color: rgba(255, 255, 255, 0.7);
+  font-size:0.7rem
 }

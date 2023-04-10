@@ -28,7 +28,6 @@ export class TzprofilesService {
   
   async getUserProfile(address: string) {
     const url = `${this.tzprofilesUrlAPI}/${address}` 
-    console.log(url)
 
     let profile = new Profile(address)
 

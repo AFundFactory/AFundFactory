@@ -25,7 +25,6 @@ export class IndexerService {
       campaignList.forEach(element => {
         element.ascii_array = element.ascii.split('\n').slice(0, -1)
       });
-      console.log(campaignList);
       this.allCampaigns = campaignList
       return campaignList
 
@@ -36,12 +35,10 @@ export class IndexerService {
   async getCampaign(contractAddress: string) {
     const url = `${this.indexerURL}/getCampaignByAddress?contract=${contractAddress}`
     return this.http.get<RestResponseDetail>(url).pipe(map(res => {
-      console.log(res)
       if (res.campaignList.length == 0) return null
-      else {
-        res.campaignList[0].ascii_array = res.campaignList[0].ascii.split('\n').slice(0, -1)
-        return res.campaignList[0]
-      }
+
+      res.campaignList[0].ascii_array = res.campaignList[0].ascii.split('\n').slice(0, -1)
+      return res.campaignList[0]
     }))
   }
 
@@ -53,7 +50,6 @@ export class IndexerService {
       campaignList.forEach(element => {
         element.ascii_array = element.ascii.split('\n').slice(0, -1)
       });
-      console.log(campaignList);
       return campaignList
 
     }))
@@ -67,7 +63,6 @@ export class IndexerService {
       campaignList.forEach(element => {
         element.ascii_array = element.ascii.split('\n').slice(0, -1)
       });
-      console.log(campaignList);
       return campaignList
 
     }))
@@ -77,7 +72,6 @@ export class IndexerService {
   async getAvailableCategories() {
     const url = `${this.indexerURL}/getAvailableCategories`
     return this.categories.length > 0 ? of(this.categories) : this.http.get<RestResponse>(url).pipe(map(res => {
-      console.log(res)
       let campaignList = res.campaignList
       let availableCategories: string[] = []
       campaignList.forEach(campaign => {

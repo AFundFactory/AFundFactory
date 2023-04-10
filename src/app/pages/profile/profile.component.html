@@ -1,27 +1,28 @@
-<div class="row m-5">
+<div class="row m-3 m-md-4 justify-content-center">
 
-    <div class="row mb-3 justify-content-center">
-        <div class="col-10">
+    <!-- <div class="row mb-3 justify-content-center"> -->
+        <div class="col-12 col-sm-10">
+
             <mat-card appearance="outlined" *ngIf="profileReady && profile.exists">
     
                 <div class="row">
-
-                    <div class="col-12 col-sm-auto" *ngIf="profile.logoURL">
-                        <img [src]="profile.logoURL" style="height:auto">
-                    </div>
     
-                    <div class="col">
+                    <div class="col-auto">
     
+                         
                         <mat-card-header>
-                            <mat-card-title *ngIf="profile.alias">{{ profile.alias }}</mat-card-title>
-                            <mat-card-title class="card-title" *ngIf="!profile.alias">Unknown name</mat-card-title>
-        
-                            <mat-card-subtitle class="card-text" *ngIf="profile.description">{{ profile.description }}</mat-card-subtitle>
-                            <mat-card-subtitle class="card-text" *ngIf="!profile.description">No description available</mat-card-subtitle>
+                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + profile.logoURL + ')'}" style="background-size: cover;"></div>
+                       
+                            <mat-card-title *ngIf="profile.alias" style="font-size:x-large;">{{ profile.alias }}</mat-card-title>
+                            <mat-card-title *ngIf="!profile.alias" style="font-size:x-large;">Unknown name</mat-card-title>
+    
                         </mat-card-header>
                         
                 
-                        <div class="card-body mt-2">
+                        <mat-card-content>
+
+                            <mat-card-subtitle class="mb-2" *ngIf="profile.description">{{ profile.description }}</mat-card-subtitle>
+                            <mat-card-subtitle class="mb-2" *ngIf="!profile.description">No description available</mat-card-subtitle>
                     
                             <div *ngIf="profile.twitterURL">
                                 Twitter: <a [href]="profile.twitterURL">{{ profile.twitterURL }}</a>
@@ -44,7 +45,7 @@
                             <div *ngIf="!profile.ethAddress">Unknown eth address</div>
                 
                 
-                        </div> 
+                        </mat-card-content> 
     
                     </div>
 
@@ -53,9 +54,9 @@
             </mat-card>
         
             <mat-card *ngIf="profileReady && !profile.exists">
-                <mat-card-content>
+                <mat-card-header>
                     <mat-card-title>No profile found for this address</mat-card-title>
-                </mat-card-content>
+                </mat-card-header>
             </mat-card>
     
             <mat-card appearance="outlined" *ngIf="!profileReady">
@@ -66,26 +67,26 @@
             </mat-card>
     
         </div>
-    </div>
+    <!-- </div> -->
  
-    <div class="row mt-3 justify-content-center">
-        <div class="col-10">
-            <h2 *ngIf="ownedCampaigns.length > 0">Owned campaigns</h2>
+    <div class="col-12 col-sm-10 mt-3 justify-content-center" *ngIf="profileReady">
+        <!-- <div class="col-12 col-sm-10"> -->
+            <h3 class="mb-3" *ngIf="ownedCampaigns.length > 0">Owned campaigns</h3>
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
                 <div class="col pt-0 pb-4" *ngFor="let campaign of ownedCampaigns">
                         <app-campaign-card [campaign]="campaign" [profile]="true"></app-campaign-card>
                 </div>
             </div>
-            <h2 *ngIf="ownedCampaigns.length == 0">No owned campaigns</h2>
+            <h3 class="mb-3" *ngIf="ownedCampaigns.length == 0">No owned campaigns</h3>
 
-            <h2 *ngIf="fundedCampaigns.length > 0">Funded campaigns</h2>
+            <h3 class="mb-3" *ngIf="fundedCampaigns.length > 0">Funded campaigns</h3>
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
                 <div class="col pt-0 pb-4" *ngFor="let campaign of fundedCampaigns">
                         <app-campaign-card [campaign]="campaign" [profile]="true"></app-campaign-card>
                 </div>
             </div>
-            <h2 *ngIf="fundedCampaigns.length == 0">No funded campaigns</h2>
-        </div>
+            <h3 class="mb-3" *ngIf="fundedCampaigns.length == 0">No funded campaigns</h3>
+        <!-- </div> -->
     </div>
     
 </div>

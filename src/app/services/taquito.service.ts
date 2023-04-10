@@ -80,7 +80,6 @@ export class TaquitoService {
   }
 
   async requestPermission(): Promise<AccountInfo | undefined> {
-    console.log(this.wallet)
     await this.wallet.requestPermissions({ network: this.network })
     return this.wallet.client.getActiveAccount()
   }

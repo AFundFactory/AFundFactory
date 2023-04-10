@@ -1,14 +1,14 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="row m-5 justify-content-center">
+    <div class="row m-3 m-md-4 justify-content-center">
   
       <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
       <div class="col-12 col-sm-6 col-md-7 col-lg-7 mb-3">
   
-        <h2>
+        <h3 class="mb-3">
           Campaign details
-        </h2> 
+        </h3> 
   
         
         <mat-card appearance="outlined">
@@ -24,7 +24,11 @@
                   <mat-error *ngIf="form.controls['title'].hasError('pattern')">
                     Special characters not allowed!
                   </mat-error>
+
+                  
                 </mat-form-field>
+                <!-- <p class="hint text-end" *ngIf="!form.controls['title'].hasError('pattern')">{{title_control.value.length}} / 50</p>
+                <p class="error" *ngIf="form.controls['title'].hasError('pattern')">Special characters not allowed!</p> -->
               </div>
               
             </div>
@@ -129,7 +133,7 @@
   
       <!-- RIGHT COLUMN -->
       <div class="col-12 col-sm-6 col-md-5 col-lg-3 mb-3">
-        <h2 class="preview-title">Preview</h2>
+        <h3 class="mb-3">Preview</h3>
         <app-campaign-card [campaign]="formValue" [create]="true"></app-campaign-card>
       </div>  
   

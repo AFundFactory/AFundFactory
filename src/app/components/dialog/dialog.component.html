@@ -1,7 +1,7 @@
 <!-- Loading -->
 
 <div *ngIf="data.error == false && data.success == false">
-  <h1 mat-dialog-title style="font-size: larger;">Sending transaction...</h1>
+  <h1 mat-dialog-title>Sending transaction...</h1>
   <mat-dialog-content>
       <p>Please don't reload the page</p>
   </mat-dialog-content>
@@ -15,7 +15,7 @@
 <!-- Error -->
 
 <div *ngIf="data.error == true && data.success == false">
-  <h1 mat-dialog-title style="font-size: larger;">Error</h1>
+  <h1 mat-dialog-title>Error</h1>
   <mat-dialog-content>
     <p>{{ data.message }}</p>
   </mat-dialog-content>
@@ -31,7 +31,7 @@
 <!-- Success -->
 
 <div *ngIf="data.error == false && data.success == true">
-  <h1 mat-dialog-title style="font-size: larger;">Success</h1>
+  <h1 mat-dialog-title>Success</h1>
   <div mat-dialog-content>
     <p>{{ data.message }}</p>
   </div>

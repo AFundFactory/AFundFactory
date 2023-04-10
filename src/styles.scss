@@ -3,6 +3,9 @@
 
 @include mat.core();
 
+$my-typography: mat.define-typography-config(
+    $font-family: 'monospace',
+);
 
 // light theme
 $light-primary-palette: mat.define-palette(mat.$gray-palette,900);
@@ -10,11 +13,12 @@ $light-accent-palette: mat.define-palette(mat.$yellow-palette,600);
 $light-warn-palette: mat.define-palette(mat.$orange-palette,800);
 
 $light-theme: mat.define-light-theme((
- color: (
-   primary: $light-primary-palette,
-   accent: $light-accent-palette,
-   warn: $light-warn-palette
- )
+    color: (
+        primary: $light-primary-palette,
+        accent: $light-accent-palette,
+        warn: $light-warn-palette
+        ),
+    typography: $my-typography,
 ));
 
 @include mat.all-component-themes($light-theme);
@@ -27,10 +31,11 @@ $dark-warn-palette: mat.define-palette(mat.$orange-palette,800);
 
 $dark-theme: mat.define-dark-theme((
     color: (
-      primary: $dark-primary-palette,
-      accent: $dark-accent-palette,
-      warn: $dark-warn-palette
+        primary: $dark-primary-palette,
+        accent: $dark-accent-palette,
+        warn: $dark-warn-palette
     ),
+    typography: $my-typography,
 ));
 
 
@@ -255,4 +260,15 @@ img.tezos-symbol {
 img.tezos-symbol-banner {
     content: url("assets/tezos-xtz-logo_black.svg");
     height:1rem
+}
+
+
+// mat-hint space bellow form field
+.mat-mdc-form-field-bottom-align::before {
+    height:0px !important;
+}
+
+
+button {
+    letter-spacing: normal !important;
 }

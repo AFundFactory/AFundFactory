@@ -20,7 +20,6 @@ export class ExploreCampaignsComponent implements OnInit {
   async ngOnInit() {
 
     (await this.indexer.getAllCampaigns()).subscribe(res => {
-      console.log(res)
       this.allCampaigns = res
       this.campaignList = res
     });
@@ -30,7 +29,7 @@ export class ExploreCampaignsComponent implements OnInit {
     })
   }
 
-  filter_search(searchValue: string) {
+  filterSearch(searchValue: string) {
 
     this.searchValue = searchValue
 
@@ -71,9 +70,9 @@ export class ExploreCampaignsComponent implements OnInit {
       cf.description.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1);
   }
 
-  close_search() {
+  closeSearch() {
     this.searchValue = ''
-    this.filter_search(this.searchValue)
+    this.filterSearch(this.searchValue)
   }
 
 }

@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
       this.overlay.getContainerElement().classList.add('darkMode');
     }
 
-  }
+  } 
  
   ngOnInit() {
 
@@ -66,7 +66,6 @@ export class AppComponent implements OnInit {
       if (this.ownAddress) {
         (await this.tzprofile.getWalletProfile(this.ownAddress, false)).subscribe(profile => {
           this.profile = profile
-          console.log(profile)
         })
       }
     })
@@ -147,9 +146,7 @@ export class AppComponent implements OnInit {
       ),
       observeOn(asyncScheduler),
     ).subscribe(({ trigger, positions, idToRestore }) => {
-      // console.log(trigger)
-      // console.log(positions)
-      // console.log(idToRestore)
+
       if (trigger === 'imperative') {
         this.content.nativeElement.scrollTop = 0;
       }

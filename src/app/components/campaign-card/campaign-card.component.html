@@ -1,7 +1,4 @@
-<!-- <div [ngClass]="{'campaign-card d-flex justify-content-center':!view}"> -->
-
 <mat-card appearance="outlined" [ngClass]="{'h-100':!create && !view, 'campaign-card':!view}">
-<!-- <mat-card [ngClass]="{'h-100':true}"> -->
 
   <div class="ribbon" *ngIf="campaign.closed"><span>Closed</span></div>
 
@@ -9,9 +6,9 @@
   <div class="card-link-container position-relative">
 
     <!-- create and view don't have links
-      homepage has 0
-      explore has 1
-      profile has 2 -->
+      homepage has level 0
+      explore has level 1
+      profile has level 2 -->
     <a *ngIf="!create && !view && !profile && !homepage" [routerLink]="['../view', campaign.contract]" class="stretched-link"></a>
     <a *ngIf="!create && !view && profile && !homepage" [routerLink]="['../../view', campaign.contract]" class="stretched-link"></a>
     <a *ngIf="!create && !view && !profile && homepage" [routerLink]="['view', campaign.contract]" class="stretched-link"></a>
@@ -100,15 +97,15 @@
     <div class="row m-0" style="align-items: center;">
       <div class="col p-0">
         <div *ngIf="view || profile">
-          <a *ngIf="campaign.owner.name != ''" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
+          <a *ngIf="campaign.owner.name != ''" class="text-truncate" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
           <a *ngIf="campaign.owner.name == ''" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
         </div>
         <div *ngIf="!view && !profile && !homepage">
-          <a *ngIf="campaign.owner.name != ''" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
+          <a *ngIf="campaign.owner.name != ''" class="text-truncate" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
           <a *ngIf="campaign.owner.name == ''" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
         </div>
         <div *ngIf="!view && !profile && homepage">
-          <a *ngIf="campaign.owner.name != ''" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
+          <a *ngIf="campaign.owner.name != ''" class="text-truncate" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
           <a *ngIf="campaign.owner.name == ''" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
         </div>
         

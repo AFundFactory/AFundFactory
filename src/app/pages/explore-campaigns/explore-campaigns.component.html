@@ -1,6 +1,6 @@
-<div class="row m-5">
+<div class="row m-3 m-md-4">
 
-  <div class="col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-5">
+  <div class="col-12 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-5 p-0">
   <!-- <div class="col-auto"> -->
 
     <div>
@@ -9,9 +9,9 @@
           placeholder="Search"
           type="text"
           #input
-          (keyup)="filter_search(input.value)"
+          (keyup)="filterSearch(input.value)"
           [value]="searchValue">
-          <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="close_search()">
+          <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="closeSearch()">
             <mat-icon>close</mat-icon>
           </button>
       </mat-form-field>
@@ -23,7 +23,7 @@
           *ngFor="let category of availableCategories"
           color="primary"
           [(ngModel)]="category.isRefined"
-          (ngModelChange)="filter_search(searchValue)">
+          (ngModelChange)="filterSearch(searchValue)">
           {{ category.value }}
       </mat-checkbox>
     </div>
@@ -31,7 +31,7 @@
   </div>
 
 
-  <div class="col">
+  <div class="col pe-0">
   <!-- <div class="col col-sm-8 col-md-9 col-lg-10 col-xl-10 justify-content-center"> -->
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
         <!-- <div class="row row-cols-auto justify-content-center"> -->

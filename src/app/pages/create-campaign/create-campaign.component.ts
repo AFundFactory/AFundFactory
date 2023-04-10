@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { TaquitoService } from '../../services/taquito.service'
 import { TzktService } from '../../services/tzkt.service';
 import { TzprofilesService } from '../../services/tzprofiles.service';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { first } from 'rxjs/operators'
 import { Campaign } from 'src/app/models/campaign.model';
 
 export function validUrl(): ValidatorFn {
@@ -18,8 +17,7 @@ export function validUrl(): ValidatorFn {
       if (str.indexOf('://') === -1) {
         str = `https://${str}`;
       }
-      const url = new URL(str);
-      console.log(url)
+      new URL(str);
       return null;
     } catch (_) {
       return { invalidUrl: true };
@@ -33,7 +31,7 @@ export function validUrl(): ValidatorFn {
   templateUrl: './create-campaign.component.html',
   styleUrls: ['./create-campaign.component.scss']
 })
-export class CreateCampaignComponent {
+export class CreateCampaignComponent implements OnInit {
 
   form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.pattern('[\x20-\x7e]*'), Validators.maxLength(50)]),
@@ -74,24 +72,26 @@ export class CreateCampaignComponent {
     public router: Router,
     public dialog: MatDialog,
     private tzkt: TzktService,
-    private tzprofile: TzprofilesService,
-    private fb: FormBuilder
-  ) {}
+    private tzprofile: TzprofilesService
+  ) {
+    this.form.valueChanges.subscribe(_ => {
+      this.formValue = this.form.value as Campaign;
+    });
+  }
 
   async ngOnInit() {
-    this.taquito.accountInfo$.pipe(first()).subscribe(async (accountInfo) => {
+    this.taquito.accountInfo$.subscribe(async (accountInfo) => {
       this.ownAddress = accountInfo?.address
-      if (this.ownAddress) {
-        this.form.controls.owner.controls.address.setValue(this.ownAddress)
-      }
-      console.log(this.ownAddress)
 
-      if (accountInfo && this.ownAddress) {
+      if (this.ownAddress) {
+        this.form.controls.owner.controls.address.setValue(this.ownAddress);
         (await this.tzprofile.getUserProfile(this.ownAddress)).subscribe(profile => {
           if (profile.exists) {
             if ('alias' in profile) this.form.controls.owner.controls.name.setValue(profile.alias)
           }
         })
+      } else {
+        this.form.controls.owner.controls.address.setValue(null)
       }
       
     });
@@ -99,10 +99,6 @@ export class CreateCampaignComponent {
     (await this.tzkt.getCrowdfundingCategories()).subscribe(categories => this.availableCategories = categories);
 
     this.dragAreaClass = "dragarea";
-
-    this.form.valueChanges.subscribe(_ => {
-      this.formValue = this.form.value as Campaign;
-    });
     
   }
 
@@ -110,21 +106,19 @@ export class CreateCampaignComponent {
   async onSubmit() {
 
     this.taquito.accountInfo$.subscribe(async (accountInfo) => {
-      console.log(accountInfo)
       if (!accountInfo) {
         await this.taquito.requestPermission()
       }
 
       const loadingDialog = this.openDialog(false, false, '', true)
 
-      // const deadline = new Date(this.form.value.deadline).getTime() / 1000
-      const goal = this.form.value.goal ? this.form.value.goal * 1000000 : 0
-      const title = this.form.value.title ? this.form.value.title : ''
-      const description = this.form.value.description ? this.form.value.description : ''
+      const goal = this.formValue.goal
+      const title = this.formValue.title
+      const description = this.formValue.description
       const ascii = this.asciiText
-      const category = this.form.value.category ? this.form.value.category : ''
+      const category = this.formValue.category
 
-      let url = this.form.value.url;
+      let url = this.formValue.url;
       if (url && url.indexOf('://') === -1) {
         url = `https://${url}`;
       }
@@ -163,6 +157,11 @@ export class CreateCampaignComponent {
   }
 
 
+  onFileChange(event: any) {
+    let files: FileList = event.target.files;
+    this.onFileUpload(files);
+  }
+
   onFileUpload(files: FileList) {
 
     if (files.length > 1) {this.errorFiles = "Please upload only one file"; return} 
@@ -175,7 +174,6 @@ export class CreateCampaignComponent {
     if (fileType != 'image/jpeg' && fileType != 'image/png') {this.errorFiles = "Please upload a PNG or JPEG"; return}
     if (fileSize > 2) {this.errorFiles = "Max 2MB"; return}
     
-    console.log(file)
     const reader = new FileReader()
     reader.onload = (event) => this.img = event.target?.result
     reader.readAsDataURL(file)
@@ -231,8 +229,6 @@ export class CreateCampaignComponent {
   // private grayRamp = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,"^`\'. ';
   // private grayRamp = '$@B%8&WM#*ZO0QLCJUYX/|()1{}[]?-_+~<>i!lI;:,"^`\'.';
   private grayRamp = '$@B%8&WM#*ZOQLCJUYX/|(){}[]?-_+~<>i!lI;:,"^`\'.';
-  // private grayRamp = '▙▚▖ ′″‴₿№Ω█▓▒░∫∶∴∷⊕⊛⊚⊖⊙┌┐└┘├┤┬┴┼╌╎═║╔╗╚╝╣╦╬╭╮╰╯╳╱╿▼►◀▲◍◎◐◑◒◓◔◕◖◗☩☰☲☷❤'
-  // private grayRamp = '▓╬┼‴▟◕⊕☰▒╦┬″▞◓⊖☲░║′▗◎⊙☷'
   private rampLength = this.grayRamp.length;
 
   getCharacterForGrayScale(grayScale: number) {
@@ -279,11 +275,6 @@ export class CreateCampaignComponent {
   
 
   // DRAG AND DROP
-
-  onFileChange(event: any) {
-    let files: FileList = event.target.files;
-    this.onFileUpload(files);
-  }
 
   @HostListener("dragover", ["$event"]) onDragOver(event: any) {
     this.dragAreaClass = "droparea";
