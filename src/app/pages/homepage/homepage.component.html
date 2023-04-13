@@ -1,6 +1,6 @@
 <mat-card appearance="outlined" class="homepage-card" style="border:0px !important; box-shadow: none; border-radius: 0px; background-color: whitesmoke">
 
-    <div class="row justify-content-center me-5">        
+    <div class="row justify-content-center me-0 me-md-5">        
 
         <div class="col-12 col-md-8" #leftColumn>
             <!-- <mat-card-title>Crowdfunding factory</mat-card-title> -->
@@ -21,15 +21,13 @@
                    
         </div>
 
-        <div class="col-12 col-sm-8 col-md-4 my-5 align-items-center div-img-homepage">
-            <!-- <img class="img-homepage fill-height" src="../../assets/FUNDlight.svg" style="width:75%;"> -->
-            <!-- <h1>AFundFactory</h1> -->
-        </div>
+        <div class="col-12 col-sm-8 col-md-4 my-5 align-items-center div-img-homepage"></div>
 
     </div>
 </mat-card>
 
 <div class="row justify-content-center me-0 pt-5" id="ascii-banner" style="background-color: transparent !important; z-index:1; position:relative; color:black !important">
+
     <mat-card appearance="outlined" class="col-12 col-sm-6 col-lg-4 col-xl-3 homepage-small-card d-flex flex-column align-items-center bg-transparent mx-auto mb-5">
         
         <mat-card-content style="transform: scale(2);">
@@ -103,44 +101,15 @@
 
 
 
-<div class="row m-5">
+<div class="row m-2 mt-4 m-sm-5" *ngIf="lastCampaigns.length == 3">
 
+    <div >
 
-
-    <!-- <div class="row justify-content-center m-0">
-        <div class="col-10 col-sm-12 col-md-10 col-lg-8">
-            <div class="row">
-                <div class="col-12 col-sm-4 text-center mb-3">
-                    <img class="homepage-image-1" src="../../assets/1.svg" style="width:100%">
-                </div>
-                <div class="col-12 col-sm-4 text-center mb-3">
-                    <img class="homepage-image-2" src="../../assets/2.svg" style="width:100%">
-                </div>
-                <div class="col-12 col-sm-4 text-center mb-3">
-                    <img class="homepage-image-3" src="../../assets/3.svg" style="width:100%">
-                </div>
-            </div>
-            <div class="row mt-5 text-center justify-content-center">
-                <div class="col-12 col-sm-6">
-                    <button mat-flat-button color="accent" routerLink="create" style="width:100%; font-size:larger">Start your campaign now!</button>
-                </div>
-            </div>
-        </div>
-        
-    </div> -->
-
-    
-
-
-    <!--  -->
-
-    <div *ngIf="lastCampaigns.length == 3">
-
-        <div class="row justify-content-center m-0">
+        <!-- <div class="row m-0"> -->
             <!-- <div class="col col-sm-10"> -->
-                <h2 class="ps-0 pb-3"><a routerLink="campaigns">Campaigns</a></h2>
+                <h2 class="ps-0 pb-3 d-flex justify-content-center justify-content-md-start"><a routerLink="campaigns">Campaigns</a></h2>
             <!-- </div> -->
-        </div>
+        <!-- </div> -->
     
         <!-- <div class="row justify-content-center m-0">
             <div class="col col-sm-10"> -->

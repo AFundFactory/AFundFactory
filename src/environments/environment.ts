@@ -13,6 +13,8 @@ export const environment = {
   imageForMetaTag: 'https://storage.fleek.zone/4397da0e-f594-4321-9f84-be6324db12a0-bucket/LogoFFLight.png', // TODO: nova conta
   indexerURL: 'https://18.118.128.2.nip.io/api/rest',
   siteURL: 'https://afundfactory.tez.page',
+  githubURL: 'https://github.com/AFundFactory',
+  twitterURL: 'https://twitter.com/AFundFactory',
   country: 'Portugal',
   email: 'fund.factory@proton.me'
 };

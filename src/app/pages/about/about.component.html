@@ -1,5 +1,5 @@
 <div class="row m-3 m-md-4 justify-content-center">
-  <div class="col col-sm-8 col-md-8 col-lg-8 col-xl-6">
+  <div class="col col-sm-10 col-md-8 col-lg-8 col-xl-6">
 
     <!-- CROWDFUNDING CAMPAIGNS -->
     <h3 class="mb-3">Crowdfunding campaigns</h3>
@@ -108,7 +108,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>Everytime a user funds your campaign, the funds will be immediately transfered to the wallet that created the campaign.
-          If you lost access to your wallet, you won't be able to access those funds and there is no way of closing the campaign
+          If you lose access to your wallet, you won't be able to access those funds and there is no way of closing the campaign
           to prevent users from funding it further. Please make sure you have your wallet secured.
         </p>
       </mat-expansion-panel>
@@ -118,13 +118,13 @@
       <mat-expansion-panel class="mb-3">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            How it works?
+            How does it work?
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!-- !!TODO -->
-        <p>Everytime a user funds your campaign, the funds will be immediately transfered to the wallet that created the campaign.
-          If you lost access to your wallet, you won't be able to access those funds and there is no way of closing the campaign
-          to prevent users from funding it further. Please make sure you have your wallet secured.
+        <p>{{ appName }} has a factory contract to deploy individual contracts for each campaign. You can check the contracts on our 
+          <a [href]="githubURL" target="_blank">GitHub</a>, made using <a href="https://smartpy.dev/">SmartPy</a>. 
+          For a smooth experience, an indexer is set up to store info about every deployed campaign, which is also available on our GitHub.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -133,13 +133,13 @@
       <mat-expansion-panel class="mb-3">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            What info is stored?
+            What information is stored?
           </mat-panel-title>
         </mat-expansion-panel-header>
         <!-- !!TODO -->
-        <p>Everytime a user funds your campaign, the funds will be immediately transfered to the wallet that created the campaign.
-          If you lost access to your wallet, you won't be able to access those funds and there is no way of closing the campaign
-          to prevent users from funding it further. Please make sure you have your wallet secured.
+        <p>{{ appName }} has an indexer that stores info about every campaign. It also stores the user address and, if available, 
+          their registered name on <a href="https://tzprofiles.com/" target="_blank">Tezos Profiles</a>. All the stored info is 
+          publicly available in the Tezos Blockchain.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -167,8 +167,7 @@
             Contract information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Some information is retrieved with the TzKT API. Learn more on their <a href="https://tzkt.io/">website</a>.
-        </p>
+        <p>Our indexer uses the <a href="https://dipdup.io/">DipDup</a> framework and the <a href="https://tzkt.io/">TzKT API</a>.</p>
       </mat-expansion-panel>
     </mat-accordion>
 

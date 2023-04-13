@@ -48,6 +48,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 // import { ShareModule } from 'ngx-sharebuttons';
 // import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
@@ -101,9 +102,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatGridListModule,
     MatRadioModule,
     MatExpansionModule,
-    // ShareModule,
-    // ShareButtonsModule,
-    // ShareIconsModule
+    MatTabsModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

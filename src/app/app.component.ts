@@ -33,6 +33,9 @@ export class AppComponent implements OnInit {
 
   appName = environment.appName
   supportUsContract = environment.supportUsContract
+  githubURL = environment.githubURL
+  twitterURL = environment.twitterURL
+
   profile: Profile = new Profile('')
   connectedWallet$: Observable<AccountInfo | undefined>
   ownAddress: string | undefined

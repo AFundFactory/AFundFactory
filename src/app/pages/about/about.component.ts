@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export interface tableElement {
   name: string;
@@ -37,4 +38,8 @@ export class AboutComponent {
 
   displayedColumns: string[] = ['name', 'description'];
   dataSource = TABLE_DATA;
+
+  appName = environment.appName
+  githubURL = environment.githubURL
+  tzprofilesURL = environment.tzprofilesUrlAPI
 }

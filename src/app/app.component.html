@@ -68,8 +68,8 @@
 
               <mat-nav-list class="navbar-nav footer-menu fixed-bottom mb-3 ml-auto" style="visibility: hidden; position: absolute">
                 <a class="text-decoration-none" routerLink="legal"><button mat-button data-bs-dismiss="offcanvas">Legal</button></a>
-                <a class="text-decoration-none" routerLink="."><button mat-button data-bs-dismiss="offcanvas">Twitter</button></a>
-                <a class="text-decoration-none" routerLink="."><button mat-button data-bs-dismiss="offcanvas">Github</button></a>
+                <a class="text-decoration-none" [href]="twitterURL" target="_blank"><button mat-button data-bs-dismiss="offcanvas">Twitter</button></a>
+                <a class="text-decoration-none" [href]="githubURL" target="_blank"><button mat-button data-bs-dismiss="offcanvas">Github</button></a>
                 <a class="text-decoration-none" [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent" data-bs-dismiss="offcanvas">Support us</button></a>
               </mat-nav-list>
     
@@ -87,10 +87,9 @@
       <mat-toolbar>
         <mat-nav-list class="navbar-nav mr-auto pb-0">
           <a class="text-decoration-none me-2" [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent">Support us</button></a>
-          <a class="text-decoration-none me-2" mat-button routerLink="legal">Legal</a>
-          <a class="text-decoration-none me-2" mat-button routerLink=".">Twitter</a>
-          <a class="text-decoration-none" mat-button routerLink=".">Github</a>
-          
+          <a class="text-decoration-none me-2" routerLink="legal"><button mat-button>Legal</button></a>
+          <a class="text-decoration-none me-2" [href]="twitterURL" target="_blank"><button mat-button>Twitter</button></a>
+          <a class="text-decoration-none" [href]="githubURL" target="_blank"><button mat-button>Github</button></a>
         </mat-nav-list>
       </mat-toolbar>
     </div>

@@ -55,8 +55,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
       const canvasDiv = document.getElementById('ascii-banner');
       const height = canvasDiv ? canvasDiv.offsetHeight : 0;
-      const canvas = p.createCanvas(p.windowWidth,height).parent('ascii-banner');
-
+      const canvas = p.createCanvas(1.05 * p.windowWidth, height).parent('ascii-banner');
+      console.log(p.windowWidth)
       canvas.position(0, 0)
       canvas.style('z-index', '-1')
       canvas.style('padding:0px')
