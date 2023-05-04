@@ -3,7 +3,7 @@
     font-size: 30px;
     font-weight: 600;
     line-height: 40px;
-    background-color: #fdd835;
+    background-color: white
 }
 
 .landing-subtitle {
@@ -11,18 +11,11 @@
     font-size: 22px;
     font-weight: 400;
     line-height: 32px;
+    background-color: white;
 }
 
-.div-img-homepage {
-    position: static;
-    background-image: url("../../../assets/FUNDlight.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    object-fit: cover;
-    min-height:200px;
-}
 
+// smaller cards with info
 .homepage-small-card {
     border:0px !important; 
     box-shadow: none; 
@@ -34,8 +27,4 @@
     z-index:1; 
     position:relative; 
     color:black !important;
-}
-
-#ascii-banner .mat-mdc-card-subtitle {
-    color:black
 }

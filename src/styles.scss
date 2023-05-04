@@ -94,11 +94,13 @@ $dark-warn: mat-color($dark-warn-palette);
         border-left: none !important;
     }
 
+    // dialog animation
     .lds-hourglass:after {
         border: 32px solid black !important;
         border-color: black transparent black transparent !important;
     }
 
+    // drag and drop
     .dragarea {
         border: 1px solid $dark-accent !important;
     }
@@ -107,30 +109,34 @@ $dark-warn: mat-color($dark-warn-palette);
         border: 1px dashed $dark-accent !important;
     }
 
+    // offcanvas menu
     .offcanvas {
         background-color: black !important;
     }
 
+    // tables
     .mat-expansion-panel:not([class*=mat-elevation-z]) {
         box-shadow: none !important; 
         border: 3px solid $dark-accent !important
     }
 
+    // ascii text color
     svg.ascii-card text {
         fill: $dark-primary         
     }
 
+    // lighter card
     .homepage-card {
         background-color: #424242 !important;
     }
 
-    // tezos symbol
-    img.tezos-symbol {
-        content: url("assets/tezos-xtz-logo_white.svg");
+    // tezos symbol normal and lighter
+    span.tezos-symbol {
+        background-color: white;
     }
 
-    .div-img-homepage {
-        background-image: url("assets/FUNDdark.svg") !important;
+    span.tezos-symbol-lighter {
+        background-color: rgba(255,255,255,0.7);
     }
 
 }
@@ -251,24 +257,39 @@ mat-card {
 
 
 // tezos symbol
-img.tezos-symbol {
-    content: url("assets/tezos-xtz-logo_black.svg");
-    height:1rem
+span.tezos-symbol {
+    width: 0.73rem;
+    height: 1rem;
+    display: inline-block;
+    
+    -webkit-mask: url("assets/tezos-xtz-logo_black.svg") no-repeat 50% 50%;
+    mask: url("assets/tezos-xtz-logo_black.svg") no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: black;
+    vertical-align: text-bottom;
 }
 
-// tezos symbol banner (always black)
-img.tezos-symbol-banner {
-    content: url("assets/tezos-xtz-logo_black.svg");
-    height:1rem
+// tezos symbol lighter
+span.tezos-symbol-lighter {
+    width: 0.73rem;
+    height: 1rem;
+    display: inline-block;
+    
+    -webkit-mask: url("assets/tezos-xtz-logo_black.svg") no-repeat 50% 50%;
+    mask: url("assets/tezos-xtz-logo_black.svg") no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: rgba(0,0,0,0.54);
+    vertical-align: text-bottom;
 }
-
 
 // mat-hint space bellow form field
 .mat-mdc-form-field-bottom-align::before {
     height:0px !important;
 }
 
-
+// correct button letter-spacing
 button {
     letter-spacing: normal !important;
 }

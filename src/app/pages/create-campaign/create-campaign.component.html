@@ -3,7 +3,6 @@
 
     <div class="row m-3 m-md-4 justify-content-center">
   
-      <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> -->
       <div class="col-12 col-sm-6 col-md-7 col-lg-7 mb-3">
   
         <h3 class="mb-3">
@@ -24,11 +23,7 @@
                   <mat-error *ngIf="form.controls['title'].hasError('pattern')">
                     Special characters not allowed!
                   </mat-error>
-
-                  
                 </mat-form-field>
-                <!-- <p class="hint text-end" *ngIf="!form.controls['title'].hasError('pattern')">{{title_control.value.length}} / 50</p>
-                <p class="error" *ngIf="form.controls['title'].hasError('pattern')">Special characters not allowed!</p> -->
               </div>
               
             </div>
@@ -50,7 +45,7 @@
                 <mat-form-field class="full-width" appearance="outline" floatLabel="always">
                   <mat-label>Goal</mat-label>
                   <input matInput class="text-right-align" type="number" formControlName="goal" required>
-                  <span matTextSuffix><img class="tezos-symbol"></span>
+                  <span matTextSuffix><span class="tezos-symbol-lighter"></span></span>
                 </mat-form-field>
               </div>
       
@@ -120,7 +115,7 @@
               <span [matTooltip]="joinMissingFieldString()" matTooltipPosition="right">Create (3&#42793;*)</span>
             </button>
           
-            <p class="mt-3 mb-0" style="font-size: 0.7em">* To prevent spam campaigns and to support the platform, you'll be asked to transfer 3<img class="tezos-symbol" style="height:0.7rem"></p>
+            <p class="mt-3 mb-0" style="font-size: 0.7em">* To prevent spam campaigns and to support the platform, you'll be asked to transfer 3<span class="tezos-symbol" style="height:0.7rem; width:0.51rem"></span></p>
             <p style="font-size: 0.7em;">By submitting, you agree with the <a [routerLink]="['../legal']">Terms and Conditions</a></p>
               
           </mat-card-content>

@@ -33,7 +33,7 @@
                     <mat-form-field class="fund-form-field full-width" appearance="outline" floatLabel="always">
                       <mat-label>Amount</mat-label>
                       <input matInput class="text-right-align" type="number" formControlName="amount" required>
-                      <span matTextSuffix><img class="tezos-symbol"></span>
+                      <span matTextSuffix><span class="tezos-symbol-lighter"></span></span>
                     </mat-form-field>
         
                   </div>
@@ -48,7 +48,6 @@
             </mat-card-content>
                     
           </div>
-          <!-- </mat-card> -->
         
 
           <!-- CLOSING (owner) -->
@@ -114,7 +113,7 @@
           
               <ng-container matColumnDef="amount">
                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Amount </th>
-                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.amount}}<img class="tezos-symbol"></td>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.amount}}<span class="tezos-symbol-lighter"></span></td>
               </ng-container>
           
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

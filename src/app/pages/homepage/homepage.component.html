@@ -1,32 +1,38 @@
 <mat-card appearance="outlined" class="homepage-card" style="border:0px !important; box-shadow: none; border-radius: 0px; background-color: whitesmoke">
 
-    <div class="row justify-content-center m-2 m-sm-5">        
+    <div class="row justify-content-center p-2 p-sm-5 me-0" id="ascii-banner">        
 
-        <div class="col-12 col-sm-10 col-md-8 col-xxl-6" #leftColumn>
-            <!-- <mat-card-title>Crowdfunding factory</mat-card-title> -->
-            <!-- <mat-card-title class="landing-title">A factory to deploy your decentralized and censorship-resistant crowdfunding smart contracts
-                built on the Tezos blockchain</mat-card-title> -->
+        <div class="col-12 col-sm-10 col-md-8 col-xxl-6 p-3" >
 
-            <!-- <mat-card-header> -->
-                <mark class="landing-title">Deploy your own crowdfunding campaign on the Tezos blockchain</mark>
-                <mat-card-subtitle class="landing-subtitle mt-4">Get total control over your campaigns - with our factory, you
-                    can deploy a contract and be sure to have complete ownership over it!
-                </mat-card-subtitle>
-            <!-- </mat-card-header> -->
-            
-            <!-- <mat-card-content> -->
-                <button mat-flat-button color="accent" routerLink="create" style="font-size:larger" class="me-4 mb-3">Start a campaign</button>
-                <button mat-flat-button color="primary" routerLink="campaigns" style="font-size:larger" class="mb-3">Explore</button>
-            <!-- </mat-card-content> -->
-                   
+            <div class="row">
+                <div class="col">
+                    <mark class="landing-title">Deploy your own crowdfunding campaign on the Tezos blockchain</mark>
+                </div>
+            </div>
+                
+            <div class="row mt-4">
+                <div class="col">
+                    <mark class="landing-subtitle">Get total control over your campaigns - with our factory, you
+                        can deploy a contract and be sure to have complete ownership over it!
+                    </mark>
+                </div>
+            </div>
+   
+            <div class="row gx-2 mt-4">
+                <div class="col-auto">
+                    <button mat-flat-button routerLink="create" style="font-size:larger" class="me-4 mb-3">Start a campaign</button>
+                </div>
+                <div class="col-auto">
+                    <button mat-flat-button color="primary" routerLink="campaigns" style="font-size:larger" class="mb-3">Explore</button>
+                </div>
+            </div>
+      
         </div>
-
-        <!-- <div class="col-12 col-sm-8 col-md-4 my-5 align-items-center div-img-homepage"></div> -->
 
     </div>
 </mat-card>
 
-<div class="row justify-content-center me-0 pt-5" id="ascii-banner" style="background-color: transparent !important; z-index:1; position:relative; color:black !important">
+<div class="row justify-content-center me-0 pt-5">
 
     <mat-card appearance="outlined" class="col-12 col-sm-6 col-lg-4 col-xl-3 homepage-small-card d-flex flex-column align-items-center bg-transparent mx-auto mb-5">
         
@@ -48,7 +54,7 @@
         
         <mat-card-header>
             <mat-card-title class="mt-3 text-center fs-4">No commissions</mat-card-title>
-            <mat-card-subtitle class="mt-2 text-center fs-6">Pay only a small flat fee of 3<img class="tezos-symbol-banner"></mat-card-subtitle>
+            <mat-card-subtitle class="mt-2 text-center fs-6">Pay only a small flat fee of 3<span class="tezos-symbol-lighter"></span></mat-card-subtitle>
         </mat-card-header>
         
     </mat-card>
@@ -113,6 +119,4 @@
         </div>
     </div>
 
-    
-       
 </div>

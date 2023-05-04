@@ -10,8 +10,6 @@ import * as p5 from 'p5';
 })
 export class HomepageComponent implements OnInit, OnDestroy {
 
-  @ViewChild('leftColumn') public leftColumn!: ElementRef;
-
   public lastCampaigns: Campaign[] = []
   private p5!: p5;
 
