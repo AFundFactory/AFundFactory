@@ -16,7 +16,6 @@ export class Campaign {
   donated: number = 0;
   version: string = '';
   creationDate: string = '';
-  // funding?: Funding[];
   ascii_array: string[] = [];
 
   public constructor(init?: Partial<Campaign>) {

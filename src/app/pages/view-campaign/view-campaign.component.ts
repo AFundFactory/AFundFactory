@@ -97,7 +97,7 @@ export class ViewCampaignComponent implements OnInit {
   sendFunds() {
 
     this.taquito.accountInfo$.subscribe(async (accountInfo) => {
-      console.log(accountInfo)
+      
       if (!accountInfo) {
         await this.taquito.requestPermission()
       }
@@ -123,7 +123,7 @@ export class ViewCampaignComponent implements OnInit {
   closeCampaign() {
 
     this.taquito.accountInfo$.subscribe(async (accountInfo) => {
-      console.log(accountInfo)
+      
       if (!accountInfo) {
         await this.taquito.requestPermission()
       }

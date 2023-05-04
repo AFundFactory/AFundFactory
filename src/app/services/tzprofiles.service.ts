@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Profile } from '../models/profile.model'
-import { map, tap } from 'rxjs/operators'
-import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,21 +10,9 @@ import { environment } from 'src/environments/environment';
 export class TzprofilesService {
 
   private tzprofilesUrlAPI = environment.tzprofilesUrlAPI
-  public walletProfile!: Observable<{ exists: boolean; address: string; alias: string | undefined; }>;
 
   constructor(private http: HttpClient) { }
 
-
-  async getWalletProfile(address: string, forceReload: boolean) : Promise<Observable<any>> {
-    if (!forceReload && this.walletProfile){
-      return of(this.walletProfile) ;
-    }
-
-    return (await this.getUserProfile(address)).pipe(tap(profile => {
-      this.walletProfile = of({exists: profile.exists, address: address, alias: profile.alias})
-    }))
-  }
-  
   async getUserProfile(address: string) {
     const url = `${this.tzprofilesUrlAPI}/${address}` 
 
@@ -36,7 +23,6 @@ export class TzprofilesService {
       
         res.forEach((x) => {
           const obj = JSON.parse(x[1])
-          console.log(obj)
           const context = obj['@context'][1]
           const credentialSubject = obj['credentialSubject']
 

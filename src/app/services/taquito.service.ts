@@ -14,8 +14,8 @@ import { environment } from 'src/environments/environment';
 export class TaquitoService {
   
   public network = {
-    type: NetworkType.GHOSTNET,
-    rpcUrl: 'https://ghostnet.tezos.marigold.dev/'
+    type: NetworkType.MAINNET,
+    rpcUrl: 'https://mainnet.api.tez.ie'
   }
 
   private taquito: TezosToolkit = new TezosToolkit(this.network.rpcUrl);
@@ -105,7 +105,7 @@ export class TaquitoService {
             title,
             url
           )
-          .send({ amount: 2 })
+          .send({ amount: 3 })
       ).then((op: any) => {
         return op.confirmation(this.numBlocks+1).then(async () => {
           return (await this.tzkt.getOriginatedContractAddressFromHash(op.opHash))

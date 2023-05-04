@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
     this.connectedWallet$.subscribe(async accountInfo => {
       this.ownAddress = accountInfo?.address
       if (this.ownAddress) {
-        (await this.tzprofile.getWalletProfile(this.ownAddress, false)).subscribe(profile => {
+        (await this.tzprofile.getUserProfile(this.ownAddress)).subscribe(profile => {
           this.profile = profile
         })
       }

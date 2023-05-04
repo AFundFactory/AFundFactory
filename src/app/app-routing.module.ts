@@ -23,9 +23,6 @@ const routes: Routes = [
           { name: 'description', content: description },
           { property: 'og:title', content: title },
           { proprety: 'og:description', content: description },
-          // { property: 'og:image', content: environment.appUrl + 'assets/image/homepage.png' },
-          // { property: 'og:url', content: environment.appUrl + 'home' },
-          // { name: "twitter:card", content: "summary_large_image" },
           { property: 'twitter:title', content: title },
           { proprety: 'twitter:description', content: description },
         ]
@@ -42,7 +39,6 @@ const routes: Routes = [
           { name: 'description', content: description },
           { property: 'og:title', content: title },
           { proprety: 'og:description', content: description },
-          // { name: "twitter:card", content: "summary_large_image" },
           { property: 'twitter:title', content: title },
           { proprety: 'twitter:description', content: description },
         ]
@@ -123,7 +119,6 @@ const routes: Routes = [
           { name: 'description', content: description },
           { property: 'og:title', content: title },
           { proprety: 'og:description', content: description },
-          // { name: "twitter:card", content: "summary_large_image" },
           { property: 'twitter:title', content: title },
           { proprety: 'twitter:description', content: description },
         ]

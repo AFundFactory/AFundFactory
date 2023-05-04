@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   appName: 'AFundFactory',
-  contract: 'KT1KVWxFQU33Tajk99su8Tfcr5JQywWrnQrp',
-  supportUsContract: 'KT1AVaSTMc3Svnrw64Gaiwis9fFv4wfK8obb',
+  contract: 'KT1JmsJTJd9LwtCxZLmX28PYTdBAqrV5kUps',
+  supportUsContract: 'KT1U1aiB2XXPJL7xaQjZmkrD8C5NbX9Repum',
   tzprofilesUrlAPI: 'https://api.tzprofiles.com',
-  tzktUrlAPI: 'https://api.ghostnet.tzkt.io/v1',
+  tzktUrlAPI: 'https://api.tzkt.io/v1',
   iconForWalletUrl: 'https://storageapi.fleek.co/4397da0e-f594-4321-9f84-be6324db12a0-bucket/FUNDlight.svg', // TODO: nova conta
   imageForMetaTag: 'https://storage.fleek.zone/4397da0e-f594-4321-9f84-be6324db12a0-bucket/LogoFFLight.png', // TODO: nova conta
   indexerURL: 'https://18.118.128.2.nip.io/api/rest',

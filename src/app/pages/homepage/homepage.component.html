@@ -1,27 +1,27 @@
 <mat-card appearance="outlined" class="homepage-card" style="border:0px !important; box-shadow: none; border-radius: 0px; background-color: whitesmoke">
 
-    <div class="row justify-content-center me-0 me-md-5">        
+    <div class="row justify-content-center m-2 m-sm-5">        
 
-        <div class="col-12 col-md-8" #leftColumn>
+        <div class="col-12 col-sm-10 col-md-8 col-xxl-6" #leftColumn>
             <!-- <mat-card-title>Crowdfunding factory</mat-card-title> -->
             <!-- <mat-card-title class="landing-title">A factory to deploy your decentralized and censorship-resistant crowdfunding smart contracts
                 built on the Tezos blockchain</mat-card-title> -->
 
-            <mat-card-header>
-                <mat-card-title class="landing-title">Deploy your own crowdfunding campaign on the Tezos blockchain</mat-card-title>
-                <mat-card-subtitle class="landing-subtitle">Get total control over your campaigns - with our factory you
-                    can deploy a contract and be sure to have complete ownership!
+            <!-- <mat-card-header> -->
+                <mark class="landing-title">Deploy your own crowdfunding campaign on the Tezos blockchain</mark>
+                <mat-card-subtitle class="landing-subtitle mt-4">Get total control over your campaigns - with our factory, you
+                    can deploy a contract and be sure to have complete ownership over it!
                 </mat-card-subtitle>
-            </mat-card-header>
+            <!-- </mat-card-header> -->
             
-            <mat-card-content>
+            <!-- <mat-card-content> -->
                 <button mat-flat-button color="accent" routerLink="create" style="font-size:larger" class="me-4 mb-3">Start a campaign</button>
                 <button mat-flat-button color="primary" routerLink="campaigns" style="font-size:larger" class="mb-3">Explore</button>
-            </mat-card-content>
+            <!-- </mat-card-content> -->
                    
         </div>
 
-        <div class="col-12 col-sm-8 col-md-4 my-5 align-items-center div-img-homepage"></div>
+        <!-- <div class="col-12 col-sm-8 col-md-4 my-5 align-items-center div-img-homepage"></div> -->
 
     </div>
 </mat-card>
@@ -101,27 +101,16 @@
 
 
 
-<div class="row m-2 mt-4 m-sm-5" *ngIf="lastCampaigns.length == 3">
+<div class="row m-2 mt-4 m-sm-5">
 
-    <div >
+    <div>
+        <h2 class="ps-0 pb-3 d-flex justify-content-center justify-content-md-start"><a routerLink="campaigns">Campaigns</a></h2>
 
-        <!-- <div class="row m-0"> -->
-            <!-- <div class="col col-sm-10"> -->
-                <h2 class="ps-0 pb-3 d-flex justify-content-center justify-content-md-start"><a routerLink="campaigns">Campaigns</a></h2>
-            <!-- </div> -->
-        <!-- </div> -->
-    
-        <!-- <div class="row justify-content-center m-0">
-            <div class="col col-sm-10"> -->
-    
-                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
-                    <div class="col pt-0 pb-4" *ngFor="let campaign of lastCampaigns">
-                        <app-campaign-card [campaign]="campaign" [homepage]="true"></app-campaign-card>
-                    </div>
-                </div>
-            <!-- </div>
-        </div> -->
-
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+            <div class="col pt-0 pb-4" *ngFor="let campaign of lastCampaigns">
+                <app-campaign-card [campaign]="campaign" [homepage]="true"></app-campaign-card>
+            </div>
+        </div>
     </div>
 
     

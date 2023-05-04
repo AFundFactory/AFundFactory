@@ -112,7 +112,7 @@ export class CreateCampaignComponent implements OnInit {
 
       const loadingDialog = this.openDialog(false, false, '', true)
 
-      const goal = this.formValue.goal
+      const goal = this.formValue.goal * 1000000
       const title = this.formValue.title
       const description = this.formValue.description
       const ascii = this.asciiText

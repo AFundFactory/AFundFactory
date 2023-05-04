@@ -29,10 +29,8 @@ export class TzktService {
 
 
   async getOriginatedContractAddressFromHash(opHash: string) {
-    console.log(opHash)
     return (await this.getOriginationByHash(opHash)).pipe(
       map((data: any) => {
-        console.log(data)
         return data[0]['originatedContract']['address']
       })
     )

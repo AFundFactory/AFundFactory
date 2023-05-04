@@ -70,25 +70,25 @@ $dark-warn: mat-color($dark-warn-palette);
 
     // BORDERS OF MAT-FORM-FIELD
 
-    //Top bottom border, if label is inside 
+    // Top bottom border, if label is inside 
     .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline__notch {
         border-top: 1px solid $dark-accent !important;
         border-bottom: 1px solid $dark-accent !important;
     }
 
-    //Top bottom border, if label is notched
+    // Top bottom border, if label is notched
     .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline--notched {
         .mdc-notched-outline__notch {
             border-top: none !important;
             border-bottom: 1px solid $dark-accent !important;
         }
     }
-    //Left border with edges
+    // Left border with edges
     .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline__leading {
         border: 1px solid $dark-accent !important;
         border-right: none !important;
     }
-    //Right border with edges
+    // Right border with edges
     .mat-mdc-text-field-wrapper:not(.mdc-text-field--invalid) .mdc-notched-outline__trailing {
         border: 1px solid $dark-accent !important;
         border-left: none !important;

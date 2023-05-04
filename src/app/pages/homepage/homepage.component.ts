@@ -23,17 +23,12 @@ export class HomepageComponent implements OnInit, OnDestroy {
       this.lastCampaigns = res.slice(0, 3)
     })
 
-    this.createCanvas();
-
-  }
-
-  private createCanvas() {
     this.p5 = new p5(this.sketch);
   }
 
+
   sketch(p: p5) {
 
-    // const grayRamp = '$@B%8&WM#*ZOQLCJUYX/|(){}[]?-_+~<>i!lI;:,"^`\'.'
     const grayRamp = "                                 `~._^|',-!:}+{=\/*;[]7oc><i?)(rlt1jsIz3vCuJ%5aYn\"298e0f&L6OS$VGZxTyUhP4wkDFdgqbRpmX@QAEHK#BNWM"
     const rampLength = grayRamp.length;
 
@@ -48,7 +43,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
     p.windowResized = () => {
       p.setup()
-      // p.draw()
     }
 
     p.setup = () => {
@@ -56,30 +50,27 @@ export class HomepageComponent implements OnInit, OnDestroy {
       const canvasDiv = document.getElementById('ascii-banner');
       const height = canvasDiv ? canvasDiv.offsetHeight : 0;
       const canvas = p.createCanvas(1.05 * p.windowWidth, height).parent('ascii-banner');
-      console.log(p.windowWidth)
+
       canvas.position(0, 0)
       canvas.style('z-index', '-1')
       canvas.style('padding:0px')
       canvas.style('position:absolute')
 
-      // p.pixelDensity(1);
       cols = Math.floor(p.width / scl) + 2;
       rows = Math.floor(p.height / scl) + 2;
+      
       p.background('#fdd835');
+      p.fill(255);
       p.frameRate(fps)
+
+      p.textSize(scl);
+      p.textFont('Montserrat');
 
     }
 
     p.draw = () => {
-      // p.background('#303030');
       p.background('#fdd835');
-
-      // p.fill('#fdd835');
-      p.fill(255);
-          
-      p.textSize(scl);
-      p.textFont('Montserrat');
-
+      
       var yoff = 0;
       for (let y = 0; y < rows; y++) {
         let xoff = 0;

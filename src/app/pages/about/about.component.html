@@ -121,7 +121,6 @@
             How does it work?
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <!-- !!TODO -->
         <p>{{ appName }} has a factory contract to deploy individual contracts for each campaign. You can check the contracts on our 
           <a [href]="githubURL" target="_blank">GitHub</a>, made using <a href="https://smartpy.dev/">SmartPy</a>. 
           For a smooth experience, an indexer is set up to store info about every deployed campaign, which is also available on our GitHub.
@@ -136,10 +135,33 @@
             What information is stored?
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <!-- !!TODO -->
-        <p>{{ appName }} has an indexer that stores info about every campaign. It also stores the user address and, if available, 
-          their registered name on <a href="https://tzprofiles.com/" target="_blank">Tezos Profiles</a>. All the stored info is 
-          publicly available in the Tezos Blockchain.
+        <p>{{ appName }} has an indexer that stores info about every campaign. It also stores the user address (both campaign owner 
+          and supporters) and, if available, their registered name on <a href="https://tzprofiles.com/" target="_blank">Tezos Profiles</a>. 
+          All the stored info is publicly available in the Tezos Blockchain.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            I just created a campaign, but it's not showing up
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Sometimes, the indexer takes some time to update the information. Please refresh the page.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="mb-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            I just supported a campaign, but my transaction is not showing up
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Sometimes, the indexer takes some time to update the information. Please refresh the page.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
