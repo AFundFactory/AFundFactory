@@ -85,11 +85,15 @@
 
     <div class="footer">
       <mat-toolbar>
-        <mat-nav-list class="navbar-nav mr-auto pb-0">
+        <mat-nav-list class="navbar-nav pb-0">
           <a class="text-decoration-none me-2" [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent">Support us</button></a>
           <a class="text-decoration-none me-2" [href]="twitterURL" target="_blank"><button mat-button>Twitter</button></a>
           <a class="text-decoration-none" [href]="githubURL" target="_blank"><button mat-button>Github</button></a>
           <a class="text-decoration-none me-2" routerLink="legal"><button mat-button>Legal</button></a>
+        </mat-nav-list>
+
+        <mat-nav-list class="navbar-nav ms-auto pb-0">
+          <p style="font-size: 0.7rem; line-height: 0.7rem; margin-bottom: 0px;">The contract has not been audited by <br> a third party, use at your own risk.</p>
         </mat-nav-list>
       </mat-toolbar>
     </div>

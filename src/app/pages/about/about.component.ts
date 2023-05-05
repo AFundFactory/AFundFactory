@@ -21,7 +21,7 @@ const TABLE_DATA: tableElement[] = [
   },
   {
     name: 'Goal',
-    description: "define how much you need for your campaign. No worries if you don't reach the goal, all the funds are transfered to you in the moment they are donated."
+    description: "define how much you need for your campaign. No worries if you don't reach the goal, all the funds are transferred to you in the moment they are donated."
   },
   {
     name: 'ASCII image',
