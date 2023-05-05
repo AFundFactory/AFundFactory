@@ -284,6 +284,20 @@ span.tezos-symbol-lighter {
     vertical-align: text-bottom;
 }
 
+// tezos symbol always black
+span.tezos-symbol-black {
+    width: 0.73rem;
+    height: 1rem;
+    display: inline-block;
+    
+    -webkit-mask: url("assets/tezos-xtz-logo_black.svg") no-repeat 50% 50%;
+    mask: url("assets/tezos-xtz-logo_black.svg") no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: black;
+    vertical-align: text-bottom;
+}
+
 // mat-hint space bellow form field
 .mat-mdc-form-field-bottom-align::before {
     height:0px !important;

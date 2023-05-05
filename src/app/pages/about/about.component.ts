@@ -25,7 +25,7 @@ const TABLE_DATA: tableElement[] = [
   },
   {
     name: 'ASCII image',
-    description: 'upload an image (PNG or JPEG with max 2MB) that will be transformed into an ASCII image. For optimal formatting, please upload a squared image.'
+    description: 'upload an image (PNG or JPEG with max 2MB) that will be converted into an ASCII image. For optimal formatting, please upload a squared image.'
   },                    
 ];
 

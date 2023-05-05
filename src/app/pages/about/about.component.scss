@@ -3,7 +3,23 @@
     border: 3px solid black
 }
 
+.mat-expansion-panel-header {
+    height:auto !important;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
 mat-panel-title {
     font-size: larger;
     font-weight: 400;
+}
+
+mark {
+    background-color: white;
+}
+
+.main-card {
+    font-size:larger;
+    background-color: #fdd835;
+    color: black
 }

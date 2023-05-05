@@ -4,17 +4,19 @@
     <!-- CROWDFUNDING CAMPAIGNS -->
     <h3 class="mb-3">Crowdfunding campaigns</h3>
 
-    <mat-card appearance="outlined" class="mb-3">
+    <mat-card appearance="outlined" class="main-card mb-3">
 
       <mat-card-content>
-        <p>Anyone with a Tezos wallet can create or support a crowdfunding campaign easily. No account, just a wallet. 
-          When a campaign is created, a new smart contract is deployed. This smart contract is yours and the platform has 
-          no control over it, which means only you can make decisions about your campaign - <b>a truly decentralized
-          crowdfunding campaign without intermediaries.</b>
+        <p>
+          <mark>Anyone with a Tezos wallet can create or support a crowdfunding campaign easily.</mark> No account, just a wallet. 
+          When a campaign is created, a new smart contract is deployed. <mark>This smart contract is yours and the platform has 
+            no control over it</mark>, which means only you can make decisions about your campaign - a truly decentralized
+          crowdfunding campaign without intermediaries.
         </p>
     
-        <p>Funds are immediately transferred from the supporter wallet to the campaign owner wallet and there is no commission per transaction.
-          As a campaign owner, you only need to transfer 3<span class="tezos-symbol"></span> upon campaign creation - this is to prevent spam campaigns and to support
+        <p>
+          <mark>Funds are immediately transferred</mark> from the supporter wallet to the campaign owner wallet and there is no commission per transaction.
+          As a campaign owner, you only need to transfer 3<span class="tezos-symbol-black"></span> upon campaign creation - this is to prevent spam campaigns and to support
           the platform costs.
         </p>
       </mat-card-content>
@@ -29,7 +31,7 @@
             Create a crowdfunding campaign
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>You can create a crowdfunding campaign <a routerLink="../create">here</a>. 
+        <p>You can create a crowdfunding campaign <a routerLink="../create" target="_blank">here</a>. 
           This will deploy a new contract for your campaign, where all the needed info will be stored. You'll need to connect
         your wallet, which will be associated with your campaign - make sure you have access to this wallet.</p>
 
@@ -55,7 +57,7 @@
 
         <p>To prevent spam campaigns and to support costs with the platform, you'll be asked to transfer 3<span class="tezos-symbol"></span>.</p>
         
-        <p>Now that your campaign is live, share it with your friends, family and in social media!</p>
+        <p>Now that your campaign is live, share it with your friends, family and on social media!</p>
       </mat-expansion-panel>
     </mat-accordion>
 
@@ -67,7 +69,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>To fund a campaign, simply go to the page of the campaign you want to support and define how much you want to donate.
-          The owner of the campaign will receive your funds immediately, when the transaction is complete.
+          The owner of the campaign will receive your funds instantly, when the transaction is complete.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -79,7 +81,7 @@
             Collect funds
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>There's no need to collect funds because all funds are immediately transferred to the campaign owner.</p>
+        <p>There's no need to collect funds because all funds are instantly transferred to the campaign owner.</p>
       </mat-expansion-panel>
     </mat-accordion>
 
@@ -122,8 +124,8 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <p>{{ appName }} has a factory contract to deploy individual contracts for each campaign. You can check the contracts on our 
-          <a [href]="githubURL" target="_blank">GitHub</a>, made using <a href="https://smartpy.dev/">SmartPy</a>. 
-          For a smooth experience, an indexer is set up to store info about every deployed campaign, which is also available on our GitHub.
+          <a [href]="githubURL" target="_blank">GitHub</a>, made using <a href="https://smartpy.dev/" target="_blank">SmartPy</a>. 
+          For a smoother experience, an indexer is set up to store info about every deployed campaign, which is also available on our GitHub.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -137,7 +139,7 @@
         </mat-expansion-panel-header>
         <p>{{ appName }} has an indexer that stores info about every campaign. It also stores the user address (both campaign owner 
           and supporters) and, if available, their registered name on <a href="https://tzprofiles.com/" target="_blank">Tezos Profiles</a>. 
-          All the stored info is publicly available in the Tezos Blockchain.
+          All the stored info is publicly available on the Tezos Blockchain.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -149,7 +151,7 @@
             I just created a campaign, but it's not showing up
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Sometimes, the indexer takes some time to update the information. Please refresh the page.
+        <p>Sometimes the indexer takes some time to update the information. Please refresh the page.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -161,7 +163,7 @@
             I just supported a campaign, but my transaction is not showing up
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Sometimes, the indexer takes some time to update the information. Please refresh the page.
+        <p>Sometimes the indexer takes some time to update the information. Please refresh the page.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -177,7 +179,7 @@
             Profiles
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Profiles are fetched from the Tezos Profiles API. Learn more on their <a href="https://tzprofiles.com">website</a>.
+        <p>Profiles are fetched from the Tezos Profiles API. Learn more on their <a href="https://tzprofiles.com" target="_blank">website</a>.
         </p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -189,7 +191,7 @@
             Contract information
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>Our indexer uses the <a href="https://dipdup.io/">DipDup</a> framework and the <a href="https://tzkt.io/">TzKT API</a>.</p>
+        <p>Our indexer uses the <a href="https://dipdup.io/" target="_blank">DipDup</a> framework and the <a href="https://tzkt.io/" target="_blank">TzKT API</a>.</p>
       </mat-expansion-panel>
     </mat-accordion>
 
