@@ -70,9 +70,10 @@
                 <a class="text-decoration-none" routerLink="legal"><button mat-button data-bs-dismiss="offcanvas">Legal</button></a>
                 <a class="text-decoration-none" [href]="twitterURL" target="_blank"><button mat-button data-bs-dismiss="offcanvas">Twitter</button></a>
                 <a class="text-decoration-none" [href]="githubURL" target="_blank"><button mat-button data-bs-dismiss="offcanvas">Github</button></a>
-                <a class="text-decoration-none" [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent" data-bs-dismiss="offcanvas">Support us</button></a>
+                <a class="text-decoration-none py-3" [routerLink]="['view/', supportUsContract]"><button mat-flat-button color="accent" data-bs-dismiss="offcanvas">Support us</button></a>
+                <p style="font-size: 0.7rem; line-height: 0.7rem; margin-bottom: 0px;">The contract has not been audited by <br> a third party, use at your own risk.</p>
               </mat-nav-list>
-    
+
             </div>
           </div>
       </mat-toolbar>

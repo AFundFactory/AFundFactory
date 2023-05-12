@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Campaign } from '../../models/campaign.model'
-import { SeoService } from '../../services/seo-service.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,7 +7,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './campaign-card.component.html',
   styleUrls: ['./campaign-card.component.scss']
 })
-export class CampaignCardComponent implements OnInit {
+export class CampaignCardComponent {
 
   // get campaign from form or from regular object
   private _campaign: Campaign = new Campaign()
@@ -27,32 +26,6 @@ export class CampaignCardComponent implements OnInit {
   @Input() view: boolean = false
   @Input() profile: boolean = false
   @Input() homepage: boolean = false
-
-  constructor(
-    private seoService: SeoService
-  ) {}
-
-  ngOnInit() {
-
-    if (this.view) {
-
-      const metaTags = [
-        {name: 'description', content: this.campaign.description ? this.campaign.description : ''},
-        {name: 'og:description', content: this.campaign.description ? this.campaign.description : ''},
-        {name: 'twitter:description', content: this.campaign.description ? this.campaign.description : ''},
-        {name: 'og:title', content: this.campaign.title ? this.campaign.title : ''},
-        {name: 'twitter:title', content: this.campaign.title ? this.campaign.title : ''},
-      ]
-
-      if (this.campaign.title) {
-        this.seoService.updateTitle(this.campaign.title);
-      }
-      
-      this.seoService.updateMetaTags(metaTags);
-
-    }
-    
-  }  
 
   getURL(){
     let title = ''

@@ -13,6 +13,7 @@ import { first } from 'rxjs/operators'
 import { Funding } from '../../models/funding.model';
 import { IndexerService } from '../../services/indexer.service';
 import { environment } from 'src/environments/environment';
+import { SeoService } from 'src/app/services/seo-service.service';
 
 @Component({
   selector: 'app-view-campaign',
@@ -51,7 +52,9 @@ export class ViewCampaignComponent implements OnInit {
     private dialog: MatDialog,
     private tzprofile: TzprofilesService,
     private indexer: IndexerService,
+    private seoService: SeoService
   ) {}
+
 
   async ngOnInit() {
 
@@ -78,13 +81,27 @@ export class ViewCampaignComponent implements OnInit {
           this.isGoalMet = this.campaign.donated >= this.campaign.goal
           this.isClosed = this.campaign.closed
     
+          // owner profile
           ;(await this.tzprofile.getUserProfile(this.campaign.owner.address)).subscribe(profile => {
             if (profile.alias) {
               this.campaign.owner.name = profile.alias
             }
           })
     
-          console.log(this.campaign)
+          // SEO metadata tags
+          const metaTags = [
+            {name: 'description', content: this.campaign.description ? this.campaign.description : ''},
+            {name: 'og:description', content: this.campaign.description ? this.campaign.description : ''},
+            {name: 'twitter:description', content: this.campaign.description ? this.campaign.description : ''},
+            {name: 'og:title', content: this.campaign.title ? this.campaign.title : ''},
+            {name: 'twitter:title', content: this.campaign.title ? this.campaign.title : ''},
+          ]
+
+          this.seoService.updateMetaTags(metaTags);
+          
+          if (this.campaign.title) {
+            this.seoService.updateTitle(this.campaign.title);
+          }
     
         });
         

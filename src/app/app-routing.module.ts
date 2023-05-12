@@ -9,9 +9,6 @@ import { HomepageComponent } from './pages/homepage/homepage.component'
 import { AboutComponent } from './pages/about/about.component';
 import { LegalComponent } from './pages/legal/legal.component';
 
-const description = 'Create your own smart contract to receive funds'
-const title = 'AFundFactory: decentralized crowdfunding'
-
 const routes: Routes = [
   {
     path: '',
@@ -20,11 +17,7 @@ const routes: Routes = [
       seo: {
         title: 'AFundFactory',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
@@ -36,11 +29,7 @@ const routes: Routes = [
       seo: {
         title: 'Create a campaign',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
@@ -50,13 +39,9 @@ const routes: Routes = [
     component: ExploreCampaignsComponent,
     data: {
       seo: {
-        title: 'Explore',
+        title: 'Campaigns',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
@@ -68,11 +53,7 @@ const routes: Routes = [
       seo: {
         title: 'About',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
@@ -84,11 +65,7 @@ const routes: Routes = [
       seo: {
         title: 'Legal',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
@@ -100,11 +77,7 @@ const routes: Routes = [
       seo: {
         title: 'AFundFactory',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
@@ -116,11 +89,7 @@ const routes: Routes = [
       seo: {
         title: 'Profile',
         metaTags: [
-          { name: 'description', content: description },
-          { property: 'og:title', content: title },
-          { proprety: 'og:description', content: description },
-          { property: 'twitter:title', content: title },
-          { proprety: 'twitter:description', content: description },
+          // { name: 'description', content: description },
         ]
       }
     }
