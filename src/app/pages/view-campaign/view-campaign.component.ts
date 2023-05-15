@@ -73,16 +73,20 @@ export class ViewCampaignComponent implements OnInit {
           this.campaignExists = true
           this.campaign = data
     
+          // sort donation table by date desc
+          this.campaign.funding.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+          // set donation table
           this.numDonations = this.campaign.funding.length
           this.donationTable = new MatTableDataSource(this.campaign.funding);
           this.donationTable.paginator = this.paginator
     
           this.isOwner = this.ownAddress == this.campaign.owner.address
           this.isGoalMet = this.campaign.donated >= this.campaign.goal
-          this.isClosed = this.campaign.closed
+          this.isClosed = this.campaign.closed;
     
           // owner profile
-          ;(await this.tzprofile.getUserProfile(this.campaign.owner.address)).subscribe(profile => {
+          (await this.tzprofile.getUserProfile(this.campaign.owner.address)).subscribe(profile => {
             if (profile.alias) {
               this.campaign.owner.name = profile.alias
             }

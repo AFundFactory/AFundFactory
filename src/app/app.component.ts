@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, HostBinding, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, HostBinding } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs'

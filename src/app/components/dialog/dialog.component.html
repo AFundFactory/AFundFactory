@@ -1,10 +1,10 @@
 <!-- Loading -->
 
 <div *ngIf="data.error == false && data.success == false">
-  <h1 mat-dialog-title>Sending transaction...</h1>
-  <mat-dialog-content>
+  <h4 class="px-4 pt-4 pb-2">Sending transaction...</h4>
+  <div class="dialog-content px-4">
       <p>Please don't reload the page</p>
-  </mat-dialog-content>
+  </div>
   <mat-dialog-content class="text-center">
       <div class="lds-hourglass"></div>
   </mat-dialog-content>
@@ -15,31 +15,25 @@
 <!-- Error -->
 
 <div *ngIf="data.error == true && data.success == false">
-  <h1 mat-dialog-title>Error</h1>
-  <mat-dialog-content>
-    <p>{{ data.message }}</p>
-  </mat-dialog-content>
-  <!-- <div mat-dialog-actions>
-    <button mat-button (click)="onCloseClick()">Close</button>
-  </div> -->
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-  </mat-dialog-actions>
+  <h4 class="px-4 pt-4 pb-2">Error</h4>
+  <div class="dialog-content px-4">
+    <p style="word-break: break-all;">{{ data.message }}</p>
+  </div>
+  <div class="px-4 pb-2">
+    <button mat-flat-button mat-dialog-close>Close</button>
+  </div>
 </div>
 
 
 <!-- Success -->
 
 <div *ngIf="data.error == false && data.success == true">
-  <h1 mat-dialog-title>Success</h1>
-  <div mat-dialog-content>
+  <h4 class="px-4 pt-4 pb-2">Success</h4>
+  <div class="dialog-content px-4">
     <p>{{ data.message }}</p>
   </div>
-  <!-- <div mat-dialog-actions>
-    <button mat-button (click)="onCloseClick()">Close</button>
-  </div> -->
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-  </mat-dialog-actions>
+  <div class="px-4 pb-2">
+    <button mat-flat-button mat-dialog-close>Close</button>
+  </div>
 </div>
 

@@ -64,7 +64,7 @@ $dark-warn: mat-color($dark-warn-palette);
     }
 
     // dialog text
-    .mat-mdc-dialog-container .mdc-dialog__content, .mat-mdc-dialog-container .mdc-dialog__title, .mat-mdc-dialog-container .mat-mdc-button {
+    .dialog-content, .mat-mdc-dialog-container .mdc-dialog__content, .mat-mdc-dialog-container .mdc-dialog__title, .mat-mdc-dialog-container .mat-mdc-button {
         color: black !important;
     }
 
@@ -188,7 +188,7 @@ mat-card {
 }
 
 // dialog text
-.mat-mdc-dialog-container .mdc-dialog__content, .mat-mdc-dialog-container .mdc-dialog__title, .mat-mdc-dialog-container .mat-mdc-button {
+.dialog-content, .mat-mdc-dialog-container .mdc-dialog__content, .mat-mdc-dialog-container .mdc-dialog__title, .mat-mdc-dialog-container .mat-mdc-button {
     color: white !important;
 }
 
@@ -229,7 +229,7 @@ mat-card {
 }
 
 // wallet menu
-.cdk-overlay-pane {
+.cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
     min-width: fit-content;
     margin-top: 2px;
 }
