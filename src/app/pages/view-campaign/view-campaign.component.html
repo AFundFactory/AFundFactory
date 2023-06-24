@@ -96,7 +96,7 @@
           <!-- FUNDING TABLE -->
           <mat-card-content>
 
-            <table mat-table [dataSource]="donationTable">
+            <table mat-table [dataSource]="fundingTable">
 
               <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -120,10 +120,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
           
-            <mat-paginator 
-              (page)="handlePageEvent($event)"
-              [length]="numDonations"
-              [pageSize]="pageSize"
+            <mat-paginator
               [pageSizeOptions]="pageSizeOptions"
               aria-label="Select page">
             </mat-paginator>

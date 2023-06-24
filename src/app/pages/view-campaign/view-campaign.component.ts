@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { DialogComponent } from '../../components/dialog/dialog.component';
@@ -22,29 +21,30 @@ import { SeoService } from 'src/app/services/seo-service.service';
 })
 export class ViewCampaignComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  // FUNDING FORM
   form = new FormGroup({
     amount: new FormControl<number|null>(null, Validators.required)
   });
 
+  // CAMPAIGN DETAILS
   public contractAddress: string | null = null
   public supportUsContract = environment.supportUsContract
   public campaignExists: boolean | undefined = undefined
   public campaign: CampaignDetail = new CampaignDetail()
-
   private ownAddress: string | undefined
   public isOwner: Boolean = false
   public isGoalMet: boolean = false
   public isClosed: boolean = false
 
-  // DONATIONS TABLE
-  pageSize = 5;
-  numDonations: number = 0
-  donationTable: MatTableDataSource<Funding> = new MatTableDataSource([new Funding])
-  pageIndex = 0;
+  // FUNDING TABLE
+  fundingTable: MatTableDataSource<Funding> = new MatTableDataSource([new Funding])
   pageSizeOptions = [5, 10, 25];
   displayedColumns: string[] = ['date', 'address', 'amount'];
+  
+  // PAGINATOR: USED SET BECAUSE OF ASYNC DATA
+  @ViewChild(MatPaginator) set paginator(pager:MatPaginator) {
+    if (pager) this.fundingTable.paginator = pager;
+  }
 
   constructor(
     private taquito: TaquitoService,
@@ -77,9 +77,8 @@ export class ViewCampaignComponent implements OnInit {
           this.campaign.funding.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
           // set donation table
-          this.numDonations = this.campaign.funding.length
-          this.donationTable = new MatTableDataSource(this.campaign.funding);
-          this.donationTable.paginator = this.paginator
+          this.fundingTable.data = this.campaign.funding;
+          this.fundingTable.paginator = this.paginator
     
           this.isOwner = this.ownAddress == this.campaign.owner.address
           this.isGoalMet = this.campaign.donated >= this.campaign.goal
@@ -204,13 +203,6 @@ export class ViewCampaignComponent implements OnInit {
 
   closeDialog(dialog: MatDialogRef<DialogComponent, any>) {
     dialog.close();
-  }
-
-
-  handlePageEvent(event: PageEvent) {
-    this.numDonations = event.length;
-    this.pageSize = event.pageSize;
-    this.pageIndex = event.pageIndex;
   }
 
 }
