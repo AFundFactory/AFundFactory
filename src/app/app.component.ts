@@ -13,6 +13,7 @@ import { SeoService } from './services/seo-service.service';
 import { Router, Event, NavigationEnd, NavigationStart, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap, observeOn, scan  } from 'rxjs/operators';
 import { asyncScheduler } from 'rxjs';
+import { TzktService } from './services/tzkt.service';
 
 interface ScrollPositionRestore {
   event: Event;
@@ -44,7 +45,8 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly store$: Store<State>,
     private overlay: OverlayContainer,
-    private tzprofile: TzprofilesService,
+    // private tzprofile: TzprofilesService,
+    private tzkt: TzktService,
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private seoService: SeoService
@@ -67,7 +69,7 @@ export class AppComponent implements OnInit {
     this.connectedWallet$.subscribe(async accountInfo => {
       this.ownAddress = accountInfo?.address
       if (this.ownAddress) {
-        (await this.tzprofile.getUserProfile(this.ownAddress)).subscribe(profile => {
+        (await this.tzkt.getUserProfile(this.ownAddress)).subscribe(profile => {
           this.profile = profile
         })
       }

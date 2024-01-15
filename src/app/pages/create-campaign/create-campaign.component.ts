@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { TaquitoService } from '../../services/taquito.service'
 import { TzktService } from '../../services/tzkt.service';
-import { TzprofilesService } from '../../services/tzprofiles.service';
+// import { TzprofilesService } from '../../services/tzprofiles.service';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Campaign } from 'src/app/models/campaign.model';
@@ -72,7 +72,7 @@ export class CreateCampaignComponent implements OnInit {
     public router: Router,
     public dialog: MatDialog,
     private tzkt: TzktService,
-    private tzprofile: TzprofilesService
+    // private tzprofile: TzprofilesService
   ) {
     this.form.valueChanges.subscribe(_ => {
       this.formValue = this.form.value as Campaign;
@@ -85,7 +85,7 @@ export class CreateCampaignComponent implements OnInit {
 
       if (this.ownAddress) {
         this.form.controls.owner.controls.address.setValue(this.ownAddress);
-        (await this.tzprofile.getUserProfile(this.ownAddress)).subscribe(profile => {
+        (await this.tzkt.getUserProfile(this.ownAddress)).subscribe(profile => {
           if (profile.exists) {
             if ('alias' in profile) this.form.controls.owner.controls.name.setValue(profile.alias)
           }

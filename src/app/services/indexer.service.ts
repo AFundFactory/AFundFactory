@@ -20,6 +20,7 @@ export class IndexerService {
 
   async getAllCampaigns() {
     const url = `${this.indexerURL}/getAllCampaigns`
+    console.log(url)
     return this.allCampaigns.length > 0 ? of(this.allCampaigns) : this.http.get<RestResponse>(url).pipe(map(res => {
       let campaignList = res.campaignList
       campaignList.forEach(element => {

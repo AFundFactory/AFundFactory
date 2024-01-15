@@ -13,6 +13,7 @@ import { Funding } from '../../models/funding.model';
 import { IndexerService } from '../../services/indexer.service';
 import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/services/seo-service.service';
+import { TzktService } from 'src/app/services/tzkt.service';
 
 @Component({
   selector: 'app-view-campaign',
@@ -50,7 +51,8 @@ export class ViewCampaignComponent implements OnInit {
     private taquito: TaquitoService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
-    private tzprofile: TzprofilesService,
+    // private tzprofile: TzprofilesService,
+    private tzkt: TzktService,
     private indexer: IndexerService,
     private seoService: SeoService
   ) {}
@@ -85,7 +87,7 @@ export class ViewCampaignComponent implements OnInit {
           this.isClosed = this.campaign.closed;
     
           // owner profile
-          (await this.tzprofile.getUserProfile(this.campaign.owner.address)).subscribe(profile => {
+          (await this.tzkt.getUserProfile(this.campaign.owner.address)).subscribe(profile => {
             if (profile.alias) {
               this.campaign.owner.name = profile.alias
             }

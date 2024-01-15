@@ -4,6 +4,7 @@ import { Profile } from '../../models/profile.model'
 import { TzprofilesService } from '../../services/tzprofiles.service';
 import { IndexerService } from '../../services/indexer.service';
 import { Campaign } from 'src/app/models/campaign.model';
+import { TzktService } from 'src/app/services/tzkt.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private tzprofile: TzprofilesService,
+    // private tzprofile: TzprofilesService,
+    private tzkt: TzktService,
     private indexer: IndexerService
   ) {}
  
@@ -30,7 +32,7 @@ export class ProfileComponent implements OnInit {
       this.profileReady = false
       this.walletAddress = params['id'];
  
-      (await this.tzprofile.getUserProfile(this.walletAddress)).subscribe(data => {
+      (await this.tzkt.getUserProfile(this.walletAddress)).subscribe(data => {
         this.profile = data
         this.profileReady = true
       });

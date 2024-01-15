@@ -1,14 +1,14 @@
 export class Profile {
-    address: string;
-    twitterURL: string ='';
+    address: string; 
     alias: string = '';
     description: string = '';
-    website: string = '';
-    logoURL: string = '';
-    ethAddress: string = '';
+    site: string = '';
+    email: string = '';
     exists: boolean = false;
-    githubURL: string = '';
+    github: string = '';
+    twitter: string ='';
 
+    
     constructor(address: string)  {
       this.address = address;
      }
