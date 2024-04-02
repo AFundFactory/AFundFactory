@@ -66,7 +66,7 @@
   
   <mat-card-footer class="px-3 pb-3">
 
-    <p class="progress-title">{{ campaign.donated }}<span class="tezos-symbol"></span> of {{campaign.goal}}<span class="tezos-symbol"></span></p>
+    <p class="progress-title">{{ campaign.donated / 1000000 }}<span class="tezos-symbol"></span> of {{ campaign.goal / 1000000 }}<span class="tezos-symbol"></span></p>
  
     <div class="progress my-2">
         <div 
@@ -79,16 +79,16 @@
     <div class="row mx-0 mt-3" style="align-items: center;">
       <div class="col-auto p-0">
         <div *ngIf="view || profile">
-          <a *ngIf="campaign.owner.name != ''" class="text-truncate" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
-          <a *ngIf="campaign.owner.name == ''" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
+          <a *ngIf="campaign.owner.alias != ''" class="text-truncate" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.alias }}</a>
+          <a *ngIf="campaign.owner.alias == ''" [routerLink]="['../../profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
         </div>
         <div *ngIf="!view && !profile && !homepage">
-          <a *ngIf="campaign.owner.name != ''" class="text-truncate" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
-          <a *ngIf="campaign.owner.name == ''" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
+          <a *ngIf="campaign.owner.alias != ''" class="text-truncate" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.alias }}</a>
+          <a *ngIf="campaign.owner.alias == ''" [routerLink]="['../profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
         </div>
         <div *ngIf="!view && !profile && homepage">
-          <a *ngIf="campaign.owner.name != ''" class="text-truncate" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.name }}</a>
-          <a *ngIf="campaign.owner.name == ''" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
+          <a *ngIf="campaign.owner.alias != ''" class="text-truncate" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.alias }}</a>
+          <a *ngIf="campaign.owner.alias == ''" [routerLink]="['profile', campaign.owner.address]">{{ campaign.owner.address | shorten }}</a>
         </div>
         
       </div>

@@ -15,18 +15,33 @@
             </mat-card-header>
             
             <mat-card-content>
-
-                <div *ngIf="profile.twitter">
-                    Twitter: <a [href]="profile.twitter" target="_blank">{{ profile.twitter }}</a>
-                </div>
-
-                <div *ngIf="profile.github">
-                    GitHub: <a [href]="profile.github" target="_blank">{{ profile.github }}</a>
-                </div>
+               
 
                 <div *ngIf="profile.site">
                     Website: <a [href]="profile.site" target="_blank">{{ profile.site }}</a>
                 </div>
+
+                <div *ngIf="profile.email">
+                    E-mail: <a [href]="'mailto:' + profile.email" target="_blank">{{ profile.email }}</a>
+                </div>
+
+                <div *ngIf="profile.telegram">
+                    Telegram: <a [href]="'https://t.me/' + profile.telegram" target="_blank">{{ profile.telegram }}</a>
+                </div>
+
+                <div *ngIf="profile.twitter">
+                    Twitter: <a [href]="'https://twitter.com/' + profile.twitter" target="_blank">{{ profile.twitter }}</a>
+                </div>
+
+                <div *ngIf="profile.instagram">
+                    Instagram: <a [href]="'https://www.instagram.com/' + profile.instagram" target="_blank">{{ profile.instagram }}</a>
+                </div>
+
+                <div *ngIf="profile.github">
+                    GitHub: <a [href]="'https://github.com/' + profile.github" target="_blank">{{ profile.github }}</a>
+                </div>
+
+
 
                 <!-- <div *ngIf="profile.ethAddress">
                     Eth address: <a [href]="'https://etherscan.io/address/' + profile.ethAddress" target="_blank">{{ profile.ethAddress | shorten }}</a>
@@ -64,13 +79,13 @@
             </div>
             <h3 class="mb-3" *ngIf="ownedCampaigns.length == 0">No owned campaigns</h3>
 
-            <h3 class="mb-3" *ngIf="fundedCampaigns.length > 0">Funded campaigns</h3>
+            <!-- <h3 class="mb-3" *ngIf="fundedCampaigns.length > 0">Funded campaigns</h3>
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-3">
                 <div class="col pt-0 pb-4" *ngFor="let campaign of fundedCampaigns">
                     <app-campaign-card [campaign]="campaign" [profile]="true"></app-campaign-card>
                 </div>
             </div>
-            <h3 class="mb-3" *ngIf="fundedCampaigns.length == 0">No funded campaigns</h3>
+            <h3 class="mb-3" *ngIf="fundedCampaigns.length == 0">No funded campaigns</h3> -->
  
     </div>
     

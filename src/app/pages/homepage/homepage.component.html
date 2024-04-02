@@ -112,7 +112,11 @@
     <div>
         <h2 class="ps-0 pb-3 d-flex justify-content-center justify-content-md-start"><a routerLink="campaigns">Campaigns</a></h2>
 
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+        <div *ngIf="loadingCampaigns" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
+            Loading...
+        </div>
+
+        <div *ngIf="!loadingCampaigns" class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
             <div class="col pt-0 pb-4" *ngFor="let campaign of lastCampaigns">
                 <app-campaign-card [campaign]="campaign" [homepage]="true"></app-campaign-card>
             </div>

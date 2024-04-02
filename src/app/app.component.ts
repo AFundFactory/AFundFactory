@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild, HostBinding } from '@angular/
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs'
-import { TzprofilesService } from './services/tzprofiles.service';
 import { Profile } from './models/profile.model'
 import { AccountInfo } from '@airgap/beacon-sdk'
 import { Store } from '@ngrx/store'
@@ -45,7 +44,6 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly store$: Store<State>,
     private overlay: OverlayContainer,
-    // private tzprofile: TzprofilesService,
     private tzkt: TzktService,
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
@@ -69,7 +67,7 @@ export class AppComponent implements OnInit {
     this.connectedWallet$.subscribe(async accountInfo => {
       this.ownAddress = accountInfo?.address
       if (this.ownAddress) {
-        (await this.tzkt.getUserProfile(this.ownAddress)).subscribe(profile => {
+        this.tzkt.getUserProfile(this.ownAddress).subscribe(profile => {
           this.profile = profile
         })
       }

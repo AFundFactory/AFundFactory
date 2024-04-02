@@ -41,5 +41,4 @@ export class AboutComponent {
 
   appName = environment.appName
   githubURL = environment.githubURL
-  tzprofilesURL = environment.tzprofilesUrlAPI
 }

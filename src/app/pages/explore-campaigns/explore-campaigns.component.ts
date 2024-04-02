@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IndexerService } from '../../services/indexer.service';
 import { Campaign } from '../../models/campaign.model';
+import { TzktService } from 'src/app/services/tzkt.service';
 
 @Component({
   selector: 'app-explore-campaigns',
@@ -15,16 +15,16 @@ export class ExploreCampaignsComponent implements OnInit {
   availableCategories: {value: string, isRefined: boolean}[] = []
 
   constructor(
-    private indexer: IndexerService){}
+    private tzkt: TzktService){}
 
-  async ngOnInit() {
+  ngOnInit() {
 
-    (await this.indexer.getAllCampaigns()).subscribe(res => {
+    this.tzkt.getAllCampaigns().subscribe(res => {
       this.allCampaigns = res
       this.campaignList = res
     });
 
-    (await this.indexer.getAvailableCategories()).subscribe(categories => {
+    this.tzkt.getCrowdfundingCategories().subscribe(categories => {
       categories.forEach(cat => this.availableCategories.push({value: cat, isRefined: false}))
     })
   }

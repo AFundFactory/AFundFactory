@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { TaquitoService } from '../../services/taquito.service'
 import { TzktService } from '../../services/tzkt.service';
-// import { TzprofilesService } from '../../services/tzprofiles.service';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Campaign } from 'src/app/models/campaign.model';
@@ -42,7 +41,7 @@ export class CreateCampaignComponent implements OnInit {
     category: new FormControl('', Validators.required),
     owner: new FormGroup({
       address: new FormControl(''),
-      name: new FormControl('')
+      alias: new FormControl('')
     }),
     donated: new FormControl(0),
     creationDate: new FormControl(new Date(Date.now()).toString()),
@@ -71,23 +70,22 @@ export class CreateCampaignComponent implements OnInit {
     private taquito: TaquitoService,
     public router: Router,
     public dialog: MatDialog,
-    private tzkt: TzktService,
-    // private tzprofile: TzprofilesService
+    private tzkt: TzktService
   ) {
     this.form.valueChanges.subscribe(_ => {
       this.formValue = this.form.value as Campaign;
     });
   }
 
-  async ngOnInit() {
-    this.taquito.accountInfo$.subscribe(async (accountInfo) => {
+  ngOnInit() {
+    this.taquito.accountInfo$.subscribe((accountInfo) => {
       this.ownAddress = accountInfo?.address
 
       if (this.ownAddress) {
         this.form.controls.owner.controls.address.setValue(this.ownAddress);
-        (await this.tzkt.getUserProfile(this.ownAddress)).subscribe(profile => {
+        this.tzkt.getUserProfile(this.ownAddress).subscribe(profile => {
           if (profile.exists) {
-            if ('alias' in profile) this.form.controls.owner.controls.name.setValue(profile.alias)
+            if ('alias' in profile) this.form.controls.owner.controls.alias.setValue(profile.alias)
           }
         })
       } else {
@@ -96,7 +94,7 @@ export class CreateCampaignComponent implements OnInit {
       
     });
     
-    (await this.tzkt.getCrowdfundingCategories()).subscribe(categories => this.availableCategories = categories);
+    this.tzkt.getCrowdfundingCategories().subscribe(categories => this.availableCategories = categories);
 
     this.dragAreaClass = "dragarea";
     

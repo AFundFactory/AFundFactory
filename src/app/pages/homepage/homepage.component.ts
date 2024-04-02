@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
-import { IndexerService } from '../../services/indexer.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Campaign } from 'src/app/models/campaign.model';
 import * as p5 from 'p5';
+import { TzktService } from 'src/app/services/tzkt.service';
 
 @Component({
   selector: 'app-homepage',
@@ -11,18 +11,36 @@ import * as p5 from 'p5';
 export class HomepageComponent implements OnInit, OnDestroy {
 
   public lastCampaigns: Campaign[] = []
+  public loadingCampaigns = true
   private p5!: p5;
 
-  constructor(private indexer: IndexerService){}
+  constructor(
+    private tzkt: TzktService
+  ){}
 
-  async ngOnInit() {
+  ngOnInit() {
 
-    (await this.indexer.getAllCampaigns()).subscribe(res => {
-      this.lastCampaigns = res.slice(0, 3)
+    this.tzkt.getAllCampaigns().subscribe(campaigns => {
+      this.lastCampaigns = this.getRandomCampaigns(campaigns, 3)
+      if (campaigns.length > 0) this.loadingCampaigns = false
     })
 
     this.p5 = new p5(this.sketch);
   }
+
+  getRandomCampaigns(campaigns: Campaign[], n: number) {
+    var result = new Array(n),
+        len = campaigns.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = campaigns[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+}
 
 
   sketch(p: p5) {

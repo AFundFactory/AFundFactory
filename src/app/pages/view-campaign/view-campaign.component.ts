@@ -6,14 +6,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TaquitoService } from '../../services/taquito.service'
-import { TzprofilesService } from '../../services/tzprofiles.service';
-import { CampaignDetail } from 'src/app/models/campaign_detail.model';
 import { first } from 'rxjs/operators'
 import { Funding } from '../../models/funding.model';
-import { IndexerService } from '../../services/indexer.service';
 import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/services/seo-service.service';
 import { TzktService } from 'src/app/services/tzkt.service';
+import { Campaign } from 'src/app/models/campaign.model';
 
 @Component({
   selector: 'app-view-campaign',
@@ -31,7 +29,7 @@ export class ViewCampaignComponent implements OnInit {
   public contractAddress: string | null = null
   public supportUsContract = environment.supportUsContract
   public campaignExists: boolean | undefined = undefined
-  public campaign: CampaignDetail = new CampaignDetail()
+  public campaign: Campaign = new Campaign()
   private ownAddress: string | undefined
   public isOwner: Boolean = false
   public isGoalMet: boolean = false
@@ -51,45 +49,46 @@ export class ViewCampaignComponent implements OnInit {
     private taquito: TaquitoService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
-    // private tzprofile: TzprofilesService,
     private tzkt: TzktService,
-    private indexer: IndexerService,
     private seoService: SeoService
   ) {}
 
 
-  async ngOnInit() {
+  ngOnInit() {
 
     this.taquito.accountInfo$.pipe(first()).subscribe((accountInfo) => {
       this.ownAddress = accountInfo?.address
     });
   
-    this.route.params.subscribe(async (params: Params) => {
+    this.route.params.subscribe((params: Params) => {
       this.contractAddress = params['id']
 
       if (this.contractAddress) {
-        (await this.indexer.getCampaign(this.contractAddress)).subscribe(async data => {
+        this.tzkt.getCampaign(this.contractAddress).subscribe(data => {
         
           if (!data) {this.campaignExists = false; return}
           
           this.campaignExists = true
           this.campaign = data
     
-          // sort donation table by date desc
-          this.campaign.funding.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+          if (this.campaign.funding) {
+            // sort donation table by date desc
+            this.campaign.funding.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-          // set donation table
-          this.fundingTable.data = this.campaign.funding;
-          this.fundingTable.paginator = this.paginator
+            // set donation table
+            this.fundingTable.data = this.campaign.funding;
+            this.fundingTable.paginator = this.paginator
+          }
+          
     
           this.isOwner = this.ownAddress == this.campaign.owner.address
           this.isGoalMet = this.campaign.donated >= this.campaign.goal
           this.isClosed = this.campaign.closed;
     
           // owner profile
-          (await this.tzkt.getUserProfile(this.campaign.owner.address)).subscribe(profile => {
+          this.tzkt.getUserProfile(this.campaign.owner.address).subscribe(profile => {
             if (profile.alias) {
-              this.campaign.owner.name = profile.alias
+              this.campaign.owner.alias = profile.alias
             }
           })
     
